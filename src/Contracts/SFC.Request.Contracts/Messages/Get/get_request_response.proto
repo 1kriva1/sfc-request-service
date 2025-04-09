@@ -1,0 +1,12 @@
+﻿syntax = "proto3";
+
+package sfc_request;
+
+import "Models/Request/request.proto";
+
+option csharp_namespace = "SFC.Request.Contracts.Messages.Get";
+
+message GetRequestResponse
+{
+    Request request = 1;
+}
