@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>SFC.Request.Contracts</PackageId>
+    <Version>0.0.1</Version>
+    <Authors>Andrii Kryvoruk</Authors>
+    <Company>SFC</Company>
+    <Product>SFC</Product>
+    <PackageTags>Street Football Club;SFC;Request;Contracts</PackageTags>
+    <Description>
+      Contracts from Request service for SFC project
+    </Description>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Enums\sorting_direction.proto" />
+    <None Remove="Headers\auditable_header.proto" />
+    <None Remove="Headers\pagination_header.proto" />
+    <None Remove="Messages\Find\Filters\get_requests_filter.proto" />
+    <None Remove="Messages\Find\get_requests_request.proto" />
+    <None Remove="Messages\Find\get_requests_response.proto" />
+    <None Remove="Messages\Get\get_request_request.proto" />
+    <None Remove="Messages\Get\get_request_response.proto" />
+    <None Remove="Models\Common\pagination.proto" />
+    <None Remove="Models\Common\range_limit.proto" />
+    <None Remove="Models\Common\sorting.proto" />
+    <None Remove="Models\Request\request.proto" />
+    <None Remove="Services\request_service.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.29.3" />
+    <PackageReference Include="Grpc.Core.Api" Version="2.67.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.69.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Enums\sorting_direction.proto" />
+    <Protobuf Include="Headers\auditable_header.proto" />
+    <Protobuf Include="Headers\pagination_header.proto" />
+    <Protobuf Include="Messages\Find\Filters\get_requests_filter.proto" />
+    <Protobuf Include="Messages\Find\get_requests_request.proto" />
+    <Protobuf Include="Messages\Find\get_requests_response.proto" />
+    <Protobuf Include="Messages\Get\get_request_request.proto" />
+    <Protobuf Include="Messages\Get\get_request_response.proto" />
+    <Protobuf Include="Models\Common\pagination.proto" />
+    <Protobuf Include="Models\Common\range_limit.proto" />
+    <Protobuf Include="Models\Common\sorting.proto" />
+    <Protobuf Include="Models\Request\request.proto" />
+    <Protobuf Include="Services\request_service.proto" />
+  </ItemGroup>
+
+</Project>
