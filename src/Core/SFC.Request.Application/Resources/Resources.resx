@@ -180,4 +180,22 @@
   <data name="TeamPlayerNotFound" xml:space="preserve">
     <value>Team player not found.</value>
   </data>
+  <data name="TeamPlayerRequestActiveAlreadyExist" xml:space="preserve">
+    <value>Active team player request already exist.</value>
+  </data>
+  <data name="RequestAlreadyFinalized" xml:space="preserve">
+    <value>Team player request already finalized.</value>
+  </data>
+  <data name="Actual" xml:space="preserve">
+    <value>Actual</value>
+  </data>
+  <data name="Accepted" xml:space="preserve">
+    <value>Accepted</value>
+  </data>
+  <data name="Canceled" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+  <data name="Declined" xml:space="preserve">
+    <value>Declined</value>
+  </data>
 </root>

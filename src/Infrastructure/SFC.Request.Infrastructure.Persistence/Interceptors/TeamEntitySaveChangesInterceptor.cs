@@ -36,10 +36,13 @@ public class TeamEntitySaveChangesInterceptor(ITeamReference teamReference) : Sa
 
         foreach (EntityEntry<ITeamEntity> entry in entries)
         {
-            if (entry.Entity.Team is null)
+            if (entry.State == EntityState.Added || entry.State == EntityState.Modified)
             {
-                Task<TeamEntity> team = GetTeamAsync(entry.Entity.TeamId, cancellationToken);
-                entry.SetReference(context, team.Result);
+                if (entry.Entity.Team is null)
+                {
+                    Task<TeamEntity> team = GetTeamAsync(entry.Entity.TeamId, cancellationToken);
+                    entry.SetReference(context, team.Result);
+                }
             }
         }
     }

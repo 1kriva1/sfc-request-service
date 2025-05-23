@@ -5,9 +5,12 @@ using Microsoft.Extensions.Hosting;
 
 using SFC.Request.Application.Interfaces.Common;
 using SFC.Request.Application.Interfaces.Persistence.Context;
+using SFC.Request.Domain.Entities.Request.Data;
+using SFC.Request.Domain.Entities.Request.Team.Player;
 using SFC.Request.Infrastructure.Persistence.Constants;
 
 using SFC.Request.Infrastructure.Persistence.Interceptors;
+using SFC.Request.Infrastructure.Persistence.Seeds;
 
 namespace SFC.Request.Infrastructure.Persistence.Contexts;
 public class RequestDbContext(
@@ -21,9 +24,7 @@ public class RequestDbContext(
     DispatchDomainEventsSaveChangesInterceptor eventsInterceptor)
     : BaseDbContext<RequestDbContext>(options, eventsInterceptor), IRequestDbContext
 {
-#pragma warning disable CA1823 // Avoid unused private fields
     private readonly IDateTimeService _dateTimeService = dateTimeService;
-#pragma warning restore CA1823 // Avoid unused private fields
     private readonly IHostEnvironment _hostEnvironment = hostEnvironment;
     private readonly AuditableEntitySaveChangesInterceptor _auditableInterceptor = auditableInterceptor;
     private readonly UserEntitySaveChangesInterceptor _userEntityInterceptor = userEntityInterceptor;
@@ -32,9 +33,15 @@ public class RequestDbContext(
 
     #region General
 
-    public IQueryable<RequestEntity> Requests => Set<RequestEntity>();
+    public IQueryable<TeamPlayerRequest> TeamPlayerRequests => Set<TeamPlayerRequest>();
 
     #endregion General
+
+    #region Data
+
+    public IQueryable<RequestStatus> RequestStatuses => Set<RequestStatus>();
+
+    #endregion Data
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -45,7 +52,7 @@ public class RequestDbContext(
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
         // seed data
-        //modelBuilder.SeedRequestData(_dateTimeService);
+        modelBuilder.SeedRequestData(_dateTimeService);
 
         // metadata
         MetadataDbContext.ApplyMetadataConfigurations(modelBuilder, _hostEnvironment.IsDevelopment());

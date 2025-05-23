@@ -180,4 +180,22 @@
   <data name="TeamPlayerNotFound" xml:space="preserve">
     <value>Такого гравця в команді немає.</value>
   </data>
+  <data name="TeamPlayerRequestActiveAlreadyExist" xml:space="preserve">
+    <value>Активний запит гравця в команду вже існує.</value>
+  </data>
+  <data name="RequestAlreadyFinalized" xml:space="preserve">
+    <value>Запит граця в команду вже закритий.</value>
+  </data>
+  <data name="Actual" xml:space="preserve">
+    <value>Актуальний</value>
+  </data>
+  <data name="Accepted" xml:space="preserve">
+    <value>Прийнятий</value>
+  </data>
+  <data name="Canceled" xml:space="preserve">
+    <value>Скасований</value>
+  </data>
+  <data name="Declined" xml:space="preserve">
+    <value>Відмовлений</value>
+  </data>
 </root>

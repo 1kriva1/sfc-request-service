@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 using SFC.Request.Application.Common.Enums;
-using SFC.Request.Messages.Commands.Data;
+using SFC.Request.Application.Interfaces.Request.Data;
 
 namespace SFC.Request.Infrastructure.Services.Hosted;
 public class DataInitializationHostedService(
@@ -22,8 +22,18 @@ public class DataInitializationHostedService(
 
         using IServiceScope scope = _services.CreateScope();
 
+        // publish request data
+        await PublishDataInitializedAsync(scope, cancellationToken).ConfigureAwait(false);
+
         // send require data
         await SendRequireDataAsync(scope, cancellationToken).ConfigureAwait(false);
+    }
+
+    private static Task PublishDataInitializedAsync(IServiceScope scope, CancellationToken cancellationToken)
+    {
+        IRequestDataService requestDataService = scope.ServiceProvider.GetRequiredService<IRequestDataService>();
+
+        return requestDataService.PublishDataInitializedEventAsync(cancellationToken);
     }
 
     private static Task SendRequireDataAsync(IServiceScope scope, CancellationToken cancellationToken)
@@ -34,6 +44,7 @@ public class DataInitializationHostedService(
         bus.Send(new SFC.Request.Messages.Commands.Data.RequireData(), cancellationToken);
 
         bus.Send(new SFC.Request.Messages.Commands.Team.Data.RequireData(), cancellationToken);
+
         return Task.CompletedTask;
     }
 }

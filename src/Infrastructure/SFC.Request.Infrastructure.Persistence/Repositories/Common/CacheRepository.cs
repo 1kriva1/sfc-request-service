@@ -7,20 +7,20 @@ using SFC.Request.Application.Interfaces.Persistence.Context;
 using SFC.Request.Application.Interfaces.Persistence.Repository.Common;
 
 namespace SFC.Request.Infrastructure.Persistence.Repositories.Common;
-public class CacheRepository<T, TR, TID>(Repository<T, TR, TID> repository, ICache cache)
-    : IRepository<T, TR, TID>
-    where T : class
-    where TR : DbContext, IDbContext
+public class CacheRepository<TEntity, TContext, TId>(Repository<TEntity, TContext, TId> repository, ICache cache)
+    : IRepository<TEntity, TContext, TId>
+    where TEntity : class
+    where TContext : DbContext, IDbContext
 {
-    private readonly Repository<T, TR, TID> _repository = repository;
+    private readonly Repository<TEntity, TContext, TId> _repository = repository;
 
     protected ICache Cache { get; } = cache;
 
-    protected virtual string CacheKey { get => $"{typeof(T).Name}"; }
+    protected virtual string CacheKey { get => $"{typeof(TEntity).Name}"; }
 
-    public virtual async Task<IReadOnlyList<T>> ListAllAsync()
+    public virtual async Task<IReadOnlyList<TEntity>> ListAllAsync()
     {
-        if (!Cache.TryGet(CacheKey, out IReadOnlyList<T> list))
+        if (!Cache.TryGet(CacheKey, out IReadOnlyList<TEntity> list))
         {
             list = await _repository.ListAllAsync()
                                     .ConfigureAwait(false);
@@ -32,15 +32,15 @@ public class CacheRepository<T, TR, TID>(Repository<T, TR, TID> repository, ICac
         return list;
     }
 
-    public Task<T?> GetByIdAsync(TID id) => _repository.GetByIdAsync(id);
+    public Task<TEntity?> GetByIdAsync(TId id) => _repository.GetByIdAsync(id);
 
-    public Task<T> AddAsync(T entity) => _repository.AddAsync(entity);
+    public Task<TEntity> AddAsync(TEntity entity) => _repository.AddAsync(entity);
 
-    public Task DeleteAsync(T entity) => _repository.DeleteAsync(entity);
+    public Task DeleteAsync(TEntity entity) => _repository.DeleteAsync(entity);
 
-    public Task UpdateAsync(T entity) => _repository.UpdateAsync(entity);
+    public Task UpdateAsync(TEntity entity) => _repository.UpdateAsync(entity);
 
-    public Task<PagedList<T>> FindAsync(FindParameters<T> parameters) => _repository.FindAsync(parameters);
+    public Task<PagedList<TEntity>> FindAsync(FindParameters<TEntity> parameters) => _repository.FindAsync(parameters);
 
-    public Task<T[]> AddRangeAsync(params T[] entities) => _repository.AddRangeAsync(entities);
+    public Task<TEntity[]> AddRangeAsync(params TEntity[] entities) => _repository.AddRangeAsync(entities);
 }

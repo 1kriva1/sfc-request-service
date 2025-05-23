@@ -2,24 +2,25 @@
 using Microsoft.Extensions.DependencyInjection;
 
 using SFC.Request.Application.Common.Settings;
-using SFC.Request.Application.Interfaces.Persistence.Repository;
 using SFC.Request.Application.Interfaces.Persistence.Repository.Common;
 using SFC.Request.Application.Interfaces.Persistence.Repository.Data;
 using SFC.Request.Application.Interfaces.Persistence.Repository.Identity;
 using SFC.Request.Application.Interfaces.Persistence.Repository.Metadata;
 using SFC.Request.Application.Interfaces.Persistence.Repository.Player;
-using SFC.Request.Application.Interfaces.Persistence.Repository.Request;
+using SFC.Request.Application.Interfaces.Persistence.Repository.Request.Data;
+using SFC.Request.Application.Interfaces.Persistence.Repository.Request.Team.Player;
 using SFC.Request.Application.Interfaces.Persistence.Repository.Team.Data;
 using SFC.Request.Application.Interfaces.Persistence.Repository.Team.General;
 using SFC.Request.Application.Interfaces.Persistence.Repository.Team.Player;
-using SFC.Request.Infrastructure.Persistence.Repositories;
 using SFC.Request.Infrastructure.Persistence.Repositories.Common;
 using SFC.Request.Infrastructure.Persistence.Repositories.Data;
 using SFC.Request.Infrastructure.Persistence.Repositories.Data.Cache;
 using SFC.Request.Infrastructure.Persistence.Repositories.Identity;
 using SFC.Request.Infrastructure.Persistence.Repositories.Metadata;
 using SFC.Request.Infrastructure.Persistence.Repositories.Player;
-using SFC.Request.Infrastructure.Persistence.Repositories.Request;
+using SFC.Request.Infrastructure.Persistence.Repositories.Request.Data;
+using SFC.Request.Infrastructure.Persistence.Repositories.Request.Data.Cache;
+using SFC.Request.Infrastructure.Persistence.Repositories.Request.Team.Player;
 using SFC.Request.Infrastructure.Persistence.Repositories.Team.Data;
 using SFC.Request.Infrastructure.Persistence.Repositories.Team.Data.Cache;
 using SFC.Request.Infrastructure.Persistence.Repositories.Team.General;
@@ -36,7 +37,7 @@ public static class RepositoryExtensions
         services.AddScoped<IMetadataRepository, MetadataRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IPlayerRepository, PlayerRepository>();
-        services.AddScoped<IRequestRepository, RequestRepository>();
+        services.AddScoped<ITeamPlayerRequestRepository, TeamPlayerRequestRepository>();
         services.AddScoped<ITeamRepository, TeamRepository>();
         services.AddScoped<ITeamPlayerRepository, TeamPlayerRepository>();
 
@@ -61,6 +62,11 @@ public static class RepositoryExtensions
             services.AddScoped<IWorkingFootRepository, WorkingFootCacheRepository>();
             services.AddScoped<ShirtRepository>();
             services.AddScoped<IShirtRepository, ShirtCacheRepository>();
+
+            // request
+            services.AddScoped<RequestStatusRepository>();
+            services.AddScoped<IRequestStatusRepository, RequestStatusCacheRepository>();
+
             // team
             services.AddScoped<TeamPlayerStatusRepository>();
             services.AddScoped<ITeamPlayerStatusRepository, TeamPlayerStatusCacheRepository>();
@@ -75,6 +81,10 @@ public static class RepositoryExtensions
             services.AddScoped<IStatTypeRepository, StatTypeRepository>();
             services.AddScoped<IWorkingFootRepository, WorkingFootRepository>();
             services.AddScoped<IShirtRepository, ShirtRepository>();
+
+            // request
+            services.AddScoped<IRequestStatusRepository, RequestStatusRepository>();
+
             // team
             services.AddScoped<ITeamPlayerStatusRepository, TeamPlayerStatusRepository>();
         }

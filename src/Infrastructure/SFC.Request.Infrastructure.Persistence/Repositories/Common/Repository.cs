@@ -7,37 +7,37 @@ using SFC.Request.Application.Interfaces.Persistence.Repository.Common;
 using SFC.Request.Infrastructure.Persistence.Extensions;
 
 namespace SFC.Request.Infrastructure.Persistence.Repositories.Common;
-public class Repository<T, TR, TID>(TR context) : IRepository<T, TR, TID>
-    where T : class
-    where TR : DbContext, IDbContext
+public class Repository<TEntity, TContext, TId>(TContext context) : IRepository<TEntity, TContext, TId>
+    where TEntity : class
+    where TContext : DbContext, IDbContext
 {
-    protected TR Context { get; } = context;
+    protected TContext Context { get; } = context;
 
-    public virtual async Task<T?> GetByIdAsync(TID id)
+    public virtual async Task<TEntity?> GetByIdAsync(TId id)
     {
-        T? t = await Context.Set<T>().FindAsync(id)
-                                      .ConfigureAwait(false);
-        return t;
+        TEntity? entity = await Context.Set<TEntity>()
+                                       .FindAsync(id)
+                                       .ConfigureAwait(false);
+        return entity;
     }
 
-    public virtual async Task<PagedList<T>> FindAsync(FindParameters<T> parameters)
+    public virtual Task<PagedList<TEntity>> FindAsync(FindParameters<TEntity> parameters)
     {
-        return await Context.Set<T>()
-                             .AsQueryable<T>()
-                             .PaginateAsync(parameters)
-                             .ConfigureAwait(false);
+        return Context.Set<TEntity>()
+                      .AsQueryable<TEntity>()
+                      .PaginateAsync(parameters);
     }
 
-    public virtual async Task<IReadOnlyList<T>> ListAllAsync()
+    public virtual async Task<IReadOnlyList<TEntity>> ListAllAsync()
     {
-        return await Context.Set<T>()
-                             .ToListAsync()
-                             .ConfigureAwait(false);
+        return await Context.Set<TEntity>()
+                            .ToListAsync()
+                            .ConfigureAwait(false);
     }
 
-    public virtual async Task<T> AddAsync(T entity)
+    public virtual async Task<TEntity> AddAsync(TEntity entity)
     {
-        await Context.Set<T>()
+        await Context.Set<TEntity>()
                      .AddAsync(entity)
                      .ConfigureAwait(false);
 
@@ -47,31 +47,29 @@ public class Repository<T, TR, TID>(TR context) : IRepository<T, TR, TID>
         return entity;
     }
 
-    public virtual async Task<T[]> AddRangeAsync(params T[] entities)
+    public virtual async Task<TEntity[]> AddRangeAsync(params TEntity[] entities)
     {
-        await Context.Set<T>()
+        await Context.Set<TEntity>()
                      .AddRangeAsync(entities)
                      .ConfigureAwait(false);
 
         await Context.SaveChangesAsync()
-                      .ConfigureAwait(false);
+                     .ConfigureAwait(false);
 
         return entities;
     }
 
-    public virtual async Task UpdateAsync(T entity)
+    public virtual Task UpdateAsync(TEntity entity)
     {
         Context.Entry(entity).State = EntityState.Modified;
 
-        await Context.SaveChangesAsync()
-                     .ConfigureAwait(false);
+        return Context.SaveChangesAsync();
     }
 
-    public async Task DeleteAsync(T entity)
+    public Task DeleteAsync(TEntity entity)
     {
-        Context.Set<T>().Remove(entity);
+        Context.Set<TEntity>().Remove(entity);
 
-        await Context.SaveChangesAsync()
-                      .ConfigureAwait(false);
+        return Context.SaveChangesAsync();
     }
 }

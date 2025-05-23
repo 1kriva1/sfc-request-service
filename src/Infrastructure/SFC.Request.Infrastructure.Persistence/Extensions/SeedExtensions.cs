@@ -11,19 +11,27 @@ public static class SeedExtensions
        where TEntity : EnumEntity<TEnum>, new()
        where TEnum : struct
     {
-        IEnumerable<TEntity> metadataServices = Enum.GetValues(typeof(TEnum)).Cast<object>()
+        IEnumerable<TEntity> entities = Enum.GetValues(typeof(TEnum)).Cast<object>()
             .Select(value => converter((TEnum)value));
-        builder.Entity<TEntity>().HasData(metadataServices);
+        builder.Entity<TEntity>().HasData(entities);
     }
 
     public static void SeedDataEnumValues<TEntity, TEnum>(this ModelBuilder builder, Func<TEnum, TEntity> converter)
         where TEntity : EnumDataEntity<TEnum>
         where TEnum : struct
     {
-        IEnumerable<TEntity> metadataServices = Enum.GetValues(typeof(TEnum)).Cast<object>()
+        IEnumerable<TEntity> entities = GetSeedDataEnumValues(converter);
+        builder.Entity<TEntity>().HasData(entities);
+    }
+
+    public static IEnumerable<TEntity> GetSeedDataEnumValues<TEntity, TEnum>(Func<TEnum, TEntity> converter)
+        where TEntity : EnumDataEntity<TEnum>
+        where TEnum : struct
+    {
+        IEnumerable<TEntity> entities = Enum.GetValues(typeof(TEnum)).Cast<object>()
             .Select(value => converter((TEnum)value));
 
-        builder.Entity<TEntity>().HasData(metadataServices);
+        return entities;
     }
 
     public static TEntity SetCreatedDate<TEntity>(this TEntity entity, IDateTimeService dateTimeService)

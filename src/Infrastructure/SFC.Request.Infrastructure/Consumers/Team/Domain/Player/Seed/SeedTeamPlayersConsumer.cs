@@ -7,7 +7,6 @@ using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 using SFC.Request.Application.Features.Team.Player.Commands.CreateRange;
 using SFC.Request.Infrastructure.Extensions;
@@ -18,15 +17,11 @@ namespace SFC.Request.Infrastructure.Consumers.Team.Domain.Player.Seed;
 public class SeedTeamPlayersConsumer(
     IMapper mapper,
     IWebHostEnvironment environment,
-    ILogger<SeedTeamPlayersConsumer> logger,
     ISender mediator) : IConsumer<SeedTeamPlayers>
 {
-#pragma warning disable CA1823 // Avoid unused private fields
     private readonly IMapper _mapper = mapper;
     private readonly IWebHostEnvironment _environment = environment;
-    private readonly ILogger<SeedTeamPlayersConsumer> _logger = logger;
     private readonly ISender _mediator = mediator;
-#pragma warning restore CA1823 // Avoid unused private fields
 
     public async Task Consume(ConsumeContext<SeedTeamPlayers> context)
     {

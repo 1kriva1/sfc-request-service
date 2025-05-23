@@ -7,9 +7,8 @@ using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
-using SFC.Identity.Messages.Events;
+using SFC.Identity.Messages.Events.User;
 using SFC.Request.Application.Features.Identity.Commands.CreateRange;
 using SFC.Request.Infrastructure.Extensions;
 using SFC.Request.Infrastructure.Settings.RabbitMq;
@@ -18,15 +17,11 @@ namespace SFC.Request.Infrastructure.Consumers.Identity.Domain.User.Seed;
 public class UsersSeededConsumer(
     IMapper mapper,
     IWebHostEnvironment environment,
-    ILogger<UsersSeededConsumer> logger,
     ISender mediator) : IConsumer<UsersSeeded>
 {
-#pragma warning disable CA1823 // Avoid unused private fields
     private readonly IMapper _mapper = mapper;
     private readonly IWebHostEnvironment _environment = environment;
-    private readonly ILogger<UsersSeededConsumer> _logger = logger;
     private readonly ISender _mediator = mediator;
-#pragma warning restore CA1823 // Avoid unused private fields
 
     public async Task Consume(ConsumeContext<UsersSeeded> context)
     {

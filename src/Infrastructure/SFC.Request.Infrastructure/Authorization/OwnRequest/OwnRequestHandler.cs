@@ -2,14 +2,14 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
-using SFC.Request.Application.Interfaces.Persistence.Repository.Request;
+using SFC.Request.Application.Interfaces.Persistence.Repository.Request.Team.Player;
 using SFC.Request.Infrastructure.Extensions;
 
 namespace SFC.Request.Infrastructure.Authorization.OwnRequest;
-public class OwnRequestHandler(IRequestRepository requestRepository, IHttpContextAccessor httpContextAccessor)
+public class OwnRequestHandler(ITeamPlayerRequestRepository requestRepository, IHttpContextAccessor httpContextAccessor)
     : AuthorizationHandler<OwnRequestRequirement>
 {
-    private readonly IRequestRepository _requestRepository = requestRepository;
+    private readonly ITeamPlayerRequestRepository _requestRepository = requestRepository;
     private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
 
     protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context, OwnRequestRequirement requirement)

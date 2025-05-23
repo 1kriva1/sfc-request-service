@@ -36,10 +36,13 @@ public class PlayerEntitySaveChangesInterceptor(IPlayerReference playerReference
 
         foreach (EntityEntry<IPlayerEntity> entry in entries)
         {
-            if (entry.Entity.Player is null)
+            if (entry.State == EntityState.Added || entry.State == EntityState.Modified)
             {
-                Task<PlayerEntity> player = GetPlayerAsync(entry.Entity.PlayerId, cancellationToken);
-                entry.SetReference(context, player.Result);
+                if (entry.Entity.Player is null)
+                {
+                    Task<PlayerEntity> player = GetPlayerAsync(entry.Entity.PlayerId, cancellationToken);
+                    entry.SetReference(context, player.Result);
+                }
             }
         }
     }

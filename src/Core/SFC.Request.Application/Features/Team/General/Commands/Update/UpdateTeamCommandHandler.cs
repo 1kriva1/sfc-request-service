@@ -8,9 +8,7 @@ using SFC.Request.Application.Interfaces.Persistence.Repository.Team.General;
 
 namespace SFC.Request.Application.Features.Team.General.Commands.Update;
 
-public class UpdateTeamCommandHandler(
-    IMapper mapper,
-    ITeamRepository teamRepository) : IRequestHandler<UpdateTeamCommand>
+public class UpdateTeamCommandHandler(IMapper mapper, ITeamRepository teamRepository) : IRequestHandler<UpdateTeamCommand>
 {
     private readonly IMapper _mapper = mapper;
     private readonly ITeamRepository _teamRepository = teamRepository;

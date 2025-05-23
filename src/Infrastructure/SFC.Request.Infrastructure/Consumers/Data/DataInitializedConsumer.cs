@@ -5,23 +5,16 @@ using MassTransit;
 using MediatR;
 
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 
-using SFC.Data.Messages.Events;
+using SFC.Data.Messages.Events.Data;
 using SFC.Request.Application.Features.Data.Commands.Reset;
 using SFC.Request.Infrastructure.Extensions;
 using SFC.Request.Infrastructure.Settings.RabbitMq;
 
 namespace SFC.Request.Infrastructure.Consumers.Data;
-public class DataInitializedConsumer(
-    IMapper mapper,
-    ILogger<DataInitializedConsumer> logger,
-    ISender mediator) : IConsumer<DataInitialized>
+public class DataInitializedConsumer(IMapper mapper, ISender mediator) : IConsumer<DataInitialized>
 {
     private readonly IMapper _mapper = mapper;
-#pragma warning disable CA1823 // Avoid unused private fields
-    private readonly ILogger<DataInitializedConsumer> _logger = logger;
-#pragma warning restore CA1823 // Avoid unused private fields
     private readonly ISender _mediator = mediator;
 
     public async Task Consume(ConsumeContext<DataInitialized> context)

@@ -8,9 +8,8 @@ using SFC.Request.Application.Interfaces.Persistence.Repository.Player;
 
 namespace SFC.Request.Application.Features.Player.Commands.Update;
 
-public class UpdatePlayerCommandHandler(
-    IMapper mapper,
-    IPlayerRepository playerRepository) : IRequestHandler<UpdatePlayerCommand>
+public class UpdatePlayerCommandHandler(IMapper mapper, IPlayerRepository playerRepository)
+    : IRequestHandler<UpdatePlayerCommand>
 {
     private readonly IMapper _mapper = mapper;
     private readonly IPlayerRepository _playerRepository = playerRepository;
