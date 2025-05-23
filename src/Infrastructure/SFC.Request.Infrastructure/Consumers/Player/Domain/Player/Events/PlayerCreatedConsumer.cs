@@ -5,27 +5,22 @@ using MassTransit;
 using MediatR;
 
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 
-using SFC.Player.Messages.Events;
+using SFC.Player.Messages.Events.Player.General;
 using SFC.Request.Application.Features.Player.Commands.Create;
 using SFC.Request.Application.Interfaces.Persistence.Repository.Player;
 using SFC.Request.Infrastructure.Extensions;
 using SFC.Request.Infrastructure.Settings.RabbitMq;
 
-namespace SFC.Request.Infrastructure.Consumers.Player;
+namespace SFC.Request.Infrastructure.Consumers.Player.Domain.Player.Events;
 public class PlayerCreatedConsumer(
     IMapper mapper,
-    ILogger<PlayerCreatedConsumer> logger,
     ISender mediator,
     IPlayerRepository playerRepository) : IConsumer<PlayerCreated>
 {
-#pragma warning disable CA1823 // Avoid unused private fields
     private readonly IMapper _mapper = mapper;
-    private readonly ILogger<PlayerCreatedConsumer> _logger = logger;
     private readonly ISender _mediator = mediator;
     private readonly IPlayerRepository _playerRepository = playerRepository;
-#pragma warning restore CA1823 // Avoid unused private fields
 
     public async Task Consume(ConsumeContext<PlayerCreated> context)
     {

@@ -4,45 +4,92 @@
         <name>SFC.Request.Api</name>
     </assembly>
     <members>
-        <member name="M:SFC.Request.Api.Controllers.RequestsController.CreateRequestAsync(SFC.Request.Api.Infrastructure.Models.Request.Create.CreateRequestRequest)">
+        <member name="M:SFC.Request.Api.Controllers.RequestDataController.GetAllAsync">
             <summary>
-            Create new request.
+            Return all available request data types.
             </summary>
-            <param name="request">Create request request.</param>
-            <returns>An ActionResult of type CreateRequestResponse</returns>
-            <response code="201">Returns **new** created request.</response>
-            <response code="400">Returns **validation** errors.</response>
-            <response code="401">Returns when **failed** authentication.</response>
-        </member>
-        <member name="M:SFC.Request.Api.Controllers.RequestsController.UpdateRequestAsync(System.Int64,SFC.Request.Api.Infrastructure.Models.Request.Update.UpdateRequestRequest)">
-            <summary>
-            Update existing request.
-            </summary>
-            <param name="id">Request unique identifier.</param>
-            <param name="request">Update request request.</param>
-            <returns>No content</returns>
-            <response code="204">Returns no content if request updated **successfully**.</response>
-            <response code="400">Returns **validation** errors.</response>
+            <returns>An ActionResult of type GetAllRequestDataResponse</returns>
+            <response code="200">Returns all available **data types**.</response>
             <response code="401">Returns when **failed** authentication.</response>
             <response code="403">Returns when **failed** authorization.</response>
         </member>
-        <member name="M:SFC.Request.Api.Controllers.RequestsController.GetRequestAsync(System.Int64)">
+        <member name="M:SFC.Request.Api.Controllers.TeamPlayerRequestsController.CreateTeamPlayerRequestAsync(System.Int64,System.Int64,SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Create.CreateTeamPlayerRequestRequest)">
             <summary>
-            Return request model by unique identifier.
+            Create new player request for team.
             </summary>
-            <param name="id">Request unique identifier.</param>
-            <returns>An ActionResult of type GetRequestResponse</returns>
-            <response code="200">Returns request model.</response>
+            <param name="teamId">Team Id.</param>
+            <param name="playerId">Player Id.</param>
+            <param name="request">Create player request for team request.</param>
+            <returns>An ActionResult of type CreateTeamPlayerRequestResponse</returns>
+            <response code="201">Returns **new** created team player request.</response>
+            <response code="400">Returns **validation** errors.</response>
             <response code="401">Returns when **failed** authentication.</response>
-            <response code="404">Returns when request **not found** by unique identifier.</response>
+            <response code="403">Returns when **failed** authorization.</response>
+            <response code="409">Returns when **flow validation** errors.</response>
         </member>
-        <member name="M:SFC.Request.Api.Controllers.RequestsController.GetRequestsAsync(SFC.Request.Api.Infrastructure.Models.Request.Find.GetRequestsRequest)">
+        <member name="M:SFC.Request.Api.Controllers.TeamPlayerRequestsController.CancelTeamPlayerRequestAsync(System.Int64,System.Int64,System.Int64)">
             <summary>
-            Return list of requests
+            Player cancel his/her request to join team team.
             </summary>
-            <param name="request">Get requests request.</param>
-            <returns>An ActionResult of type GetRequestsResponse</returns>
-            <response code="200">Returns list of requests with pagination header.</response>
+            <param name="teamId">Team Id.</param>
+            <param name="playerId">Player Id.</param>
+            <param name="requestId">Team player request Id.</param>
+            <returns>No content</returns>
+            <response code="204">Returns no content if request **successfully** canceled.</response>
+            <response code="401">Returns when **failed** authentication.</response>
+            <response code="403">Returns when **failed** authorization.</response>
+            <response code="404">Returns when request **not found**.</response>
+            <response code="409">Returns when **flow validation** errors.</response>
+        </member>
+        <member name="M:SFC.Request.Api.Controllers.TeamPlayerRequestsController.DeclineTeamPlayerRequestAsync(System.Int64,System.Int64,System.Int64,SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Update.Decline.DeclineTeamPlayerRequestRequest)">
+            <summary>
+            Decline team request from player by team.
+            </summary>
+            <param name="teamId">Team Id.</param>
+            <param name="playerId">Player Id.</param>
+            <param name="requestId">Team player request Id.</param>
+            <param name="request">Decline team request from player request.</param>
+            <returns>No content</returns>
+            <response code="204">Returns no content if request **successfully** declined.</response>
+            <response code="400">Returns **validation** errors.</response>
+            <response code="401">Returns when **failed** authentication.</response>
+            <response code="403">Returns when **failed** authorization.</response>
+            <response code="404">Returns when request **not found**.</response>
+            <response code="409">Returns when **flow validation** errors.</response>
+        </member>
+        <member name="M:SFC.Request.Api.Controllers.TeamPlayerRequestsController.AcceptTeamPlayerRequestAsync(System.Int64,System.Int64,System.Int64)">
+            <summary>
+            Accept team request from player by team.
+            </summary>
+            <param name="teamId">Team Id.</param>
+            <param name="playerId">Player Id.</param>
+            <param name="requestId">Team player request Id.</param>
+            <returns>No content</returns>
+            <response code="204">Returns no content if request **successfully** accepted.</response>
+            <response code="401">Returns when **failed** authentication.</response>
+            <response code="403">Returns when **failed** authorization.</response>
+            <response code="404">Returns when request **not found**.</response>
+            <response code="409">Returns when **flow validation** errors.</response>
+        </member>
+        <member name="M:SFC.Request.Api.Controllers.TeamPlayerRequestsController.GetTeamPlayerRequestAsync(System.Int64,System.Int64,System.Int64)">
+            <summary>
+            Return player request for team.
+            </summary>
+            <param name="teamId">Team Id.</param>
+            <param name="playerId">Player Id.</param>
+            <param name="requestId">Team player request Id.</param>
+            <returns>An ActionResult of type GetTeamPlayerRequestResponse</returns>
+            <response code="200">Returns player request for team model.</response>
+            <response code="401">Returns when **failed** authentication.</response>
+            <response code="404">Returns when invite **not found**.</response>
+        </member>
+        <member name="M:SFC.Request.Api.Controllers.TeamPlayerRequestsController.GetTeamPlayerRequestsAsync(SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Find.GetTeamPlayerRequestsRequest)">
+            <summary>
+            Return list of team player requests.
+            </summary>
+            <param name="request">Get team player requests request.</param>
+            <returns>An ActionResult of type GetTeamPlayerRequestsResponse</returns>
+            <response code="200">Returns list of team player requests with pagination header.</response>
             <response code="400">Returns **validation** errors.</response>
             <response code="401">Returns when **failed** authentication.</response>
         </member>
@@ -538,79 +585,169 @@
             Stat value.
             </summary>
         </member>
-        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Common.RequestModel">
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Data.Common.DataValueModel">
+            <summary>
+            Data value.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Data.Common.DataValueModel.Id">
+            <summary>
+            Unique identificator of data type.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Data.Common.DataValueModel.Title">
+            <summary>
+            Describe data type.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Data.GetAll.GetAllRequestDataResponse">
+            <summary>
+            Contain all available request **data types**.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Data.GetAll.GetAllRequestDataResponse.RequestStatuses">
+            <summary>
+            Request statuses.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Common.TeamPlayerRequestModel">
             <summary>
             Request model.
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Common.RequestModel.Id">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Common.TeamPlayerRequestModel.Id">
             <summary>
             Unique identifier.
             </summary>
         </member>
-        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Create.CreateRequestModel">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Common.TeamPlayerRequestModel.Player">
             <summary>
-            **Create** request model.
+            Request related to this player.
             </summary>
         </member>
-        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Create.CreateRequestRequest">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Common.TeamPlayerRequestModel.Team">
+            <summary>
+            Request related to this team.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Common.TeamPlayerRequestModel.Status">
+            <summary>
+            Team player request status.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Common.TeamPlayerRequestModel.TeamComment">
+            <summary>
+            Comment from team to player in case decline action.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Common.TeamPlayerRequestModel.PlayerComment">
+            <summary>
+            Comment from player to team .
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Common.TeamPlayerRequestTeamModel">
+            <summary>
+            Team model for team player request.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Common.TeamPlayerRequestTeamModel.Id">
+            <summary>
+            Team unique identifier.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Create.CreateTeamPlayerRequestModel">
+            <summary>
+            **Create** team player request model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Create.CreateTeamPlayerRequestModel.Comment">
+            <summary>
+            Comment from player to team for invitation.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Create.CreateTeamPlayerRequestRequest">
             <summary>
             **Create** Request request.
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Create.CreateRequestRequest.Request">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Create.CreateTeamPlayerRequestRequest.Request">
             <summary>
-            Request model.
+            Team player request model.
             </summary>
         </member>
-        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Create.CreateRequestResponse">
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Create.CreateTeamPlayerRequestResponse">
             <summary>
             **Create** request response model.
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Create.CreateRequestResponse.Request">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Create.CreateTeamPlayerRequestResponse.Request">
             <summary>
-            Request model.
+            Team player request model.
             </summary>
         </member>
-        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Find.Filters.GetRequestsFilterModel">
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Find.Filters.GetTeamPlayerRequestsFilterModel">
             <summary>
-            Get requests filter model.
+            Get team player requests filter model.
             </summary>
         </member>
-        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Find.GetRequestsRequest">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Find.Filters.GetTeamPlayerRequestsFilterModel.Request">
             <summary>
-            **Get** requests request.
+            Request filter model.
             </summary>
         </member>
-        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Find.GetRequestsResponse">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Find.Filters.GetTeamPlayerRequestsFilterModel.Player">
             <summary>
-            **Get** requests response.
+            Player filter model.
             </summary>
         </member>
-        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Get.GetRequestResponse">
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Find.Filters.GetTeamPlayerRequestsRequestFilterModel">
+            <summary>
+            Get team player requests for request filter model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Find.Filters.GetTeamPlayerRequestsRequestFilterModel.Statuses">
+            <summary>
+            Statuses of request.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Find.GetTeamPlayerRequestsRequest">
+            <summary>
+            **Get** team player requests request.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Find.GetTeamPlayerRequestsResponse">
+            <summary>
+            **Get** team player requests response.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Get.GetTeamPlayerRequestResponse">
             <summary>
             **Get** request response.
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Get.GetRequestResponse.Request">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Get.GetTeamPlayerRequestResponse.Request">
             <summary>
-            Request model.
+            Team player request model.
             </summary>
         </member>
-        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Update.UpdateRequestModel">
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Update.Decline.DeclineTeamPlayerRequestModel">
             <summary>
-            **Update** request model.
+            **Decline** team player request model.
             </summary>
         </member>
-        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Update.UpdateRequestRequest">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Update.Decline.DeclineTeamPlayerRequestModel.Comment">
             <summary>
-            **Update** request request.
+            Comment from team to explain why player is declined to join team.
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Update.UpdateRequestRequest.Request">
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Update.Decline.DeclineTeamPlayerRequestRequest">
             <summary>
-            Request model.
+            **Decline** team player request request.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Update.Decline.DeclineTeamPlayerRequestRequest.Request">
+            <summary>
+            Decline team player request model.
             </summary>
         </member>
     </members>

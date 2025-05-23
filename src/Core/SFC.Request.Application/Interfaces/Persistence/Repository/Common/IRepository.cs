@@ -3,11 +3,11 @@ using SFC.Request.Application.Features.Common.Models.Find.Paging;
 using SFC.Request.Application.Interfaces.Persistence.Context;
 
 namespace SFC.Request.Application.Interfaces.Persistence.Repository.Common;
-public interface IRepository<TEntity, TContext, TID>
+public interface IRepository<TEntity, TContext, TId>
     where TEntity : class
     where TContext : IDbContext
 {
-    Task<TEntity?> GetByIdAsync(TID id);
+    Task<TEntity?> GetByIdAsync(TId id);
 
     Task<IReadOnlyList<TEntity>> ListAllAsync();
 

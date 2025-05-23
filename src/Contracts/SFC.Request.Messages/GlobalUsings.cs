@@ -1,2 +1,2 @@
 ﻿// core
-global using RequestEntity = SFC.Request.Messages.Models.Request.Request;
+global using RequestEntity = SFC.Request.Messages.Models.Request.Team.Player.TeamPlayerRequest;

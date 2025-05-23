@@ -7,10 +7,8 @@ using SFC.Request.Domain.Entities.Identity;
 using SFC.Request.Domain.Events.Identity;
 
 namespace SFC.Request.Application.Features.Identity.Commands.CreateRange;
-public class CreateUsersCommandHandler(
-    IMapper mapper,
-    IMediator mediator,
-    IUserRepository userRepository) : IRequestHandler<CreateUsersCommand>
+public class CreateUsersCommandHandler(IMapper mapper, IMediator mediator, IUserRepository userRepository)
+    : IRequestHandler<CreateUsersCommand>
 {
     private readonly IMapper _mapper = mapper;
     private readonly IMediator _mediator = mediator;

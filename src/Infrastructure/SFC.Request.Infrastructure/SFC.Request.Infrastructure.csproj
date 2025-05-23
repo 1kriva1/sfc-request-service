@@ -18,19 +18,19 @@
     <PackageReference Include="Hangfire.SqlServer" Version="1.8.14" />
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.0" />
-    <PackageReference Include="SFC.Data.Messages" Version="0.0.7" />
-    <PackageReference Include="SFC.Identity.Messages" Version="0.0.5" />
-    <PackageReference Include="SFC.Identity.Contracts" Version="0.0.2" />    
+    <PackageReference Include="SFC.Data.Messages" Version="0.0.8" />
+    <PackageReference Include="SFC.Identity.Messages" Version="0.0.6" />
+    <PackageReference Include="SFC.Identity.Contracts" Version="0.0.3" />    
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SFC.Player.Contracts" Version="0.0.2" />
-    <PackageReference Include="SFC.Player.Messages" Version="0.0.8" />
+    <PackageReference Include="SFC.Player.Contracts" Version="0.0.3" />
+    <PackageReference Include="SFC.Player.Messages" Version="0.0.9" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SFC.Team.Contracts" Version="0.0.2" />
-    <PackageReference Include="SFC.Team.Messages" Version="0.0.17" />
+    <PackageReference Include="SFC.Team.Contracts" Version="0.0.4" />
+    <PackageReference Include="SFC.Team.Messages" Version="0.0.20" />
   </ItemGroup>
 
   <ItemGroup>

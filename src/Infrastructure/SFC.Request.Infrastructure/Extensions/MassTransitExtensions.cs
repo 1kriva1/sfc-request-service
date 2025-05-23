@@ -8,17 +8,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-using SFC.Data.Messages.Events;
-using SFC.Identity.Messages.Commands;
-using SFC.Player.Messages.Commands.Player;
 using SFC.Request.Infrastructure.Extensions;
 using SFC.Request.Infrastructure.Settings.RabbitMq;
 using SFC.Request.Messages.Commands.Common;
-using SFC.Request.Messages.Commands.Data;
-using SFC.Request.Messages.Commands.Request;
-using SFC.Request.Messages.Events.Request;
-using SFC.Team.Messages.Commands.Team.General;
-using SFC.Team.Messages.Commands.Team.Player;
+using SFC.Request.Messages.Commands.Request.Team.Player;
+using SFC.Request.Messages.Events.Request.Data;
+using SFC.Request.Messages.Events.Request.Team.Player;
 
 namespace SFC.Request.Infrastructure.Extensions;
 public static class MassTransitExtensions
@@ -69,16 +64,20 @@ public static class MassTransitExtensions
         IWebHostEnvironment environment,
         RabbitMqExchangesSettings exchangesSettings)
     {
-        // "sfc.request.request.created"
-        configure.AddExchange<RequestCreated>(exchangesSettings.Request.Value.Domain.Request.Events.Created);
+        // "sfc.request.data.initialized"
+        configure.AddExchange<DataInitialized>(exchangesSettings.Request.Value.Data.Source.Initialized);
 
-        // "sfc.request.request.updated"
-        configure.AddExchange<RequestUpdated>(exchangesSettings.Request.Value.Domain.Request.Events.Updated);
+        // "sfc.request.request.created"
+        configure.AddExchange<TeamPlayerRequestCreated>(exchangesSettings.Request.Value.Domain.Team.Player.Events.Created);
+
+        // "sfc.request.team.player.updated"
+        configure.AddExchange<TeamPlayerRequestUpdated>(exchangesSettings.Request.Value.Domain.Team.Player.Events.Updated,
+            context => Enum.GetName(typeof(RequestStatusEnum), context.Message.Request.StatusId));
 
         if (environment.IsDevelopment())
         {
             // "sfc.request.requests.seed"
-            configure.AddExchange<SeedRequests>(exchangesSettings.Request.Value.Domain.Request.Seed.Seed, exchangesSettings.Request.Key);
+            configure.AddExchange<SeedTeamPlayerRequests>(exchangesSettings.Request.Value.Domain.Team.Player.Seed.Seed, exchangesSettings.Request.Key);
         }
     }
 
@@ -88,13 +87,12 @@ public static class MassTransitExtensions
 
         EndpointConvention.Map<SFC.Request.Messages.Commands.Team.Data.RequireData>(exchangesSettings.Request.Value.Data.Dependent.Team.RequireInitialize.GetExchangeEndpointUri());
 
-        // need extend team service before use it here
-        //EndpointConvention.Map<SFC.Team.Messages.Commands.Request.InitializeData>(exchangesSettings.Team.Value.Data.Dependent.Request.Initialize.GetExchangeEndpointUri());
+        EndpointConvention.Map<SFC.Team.Messages.Commands.Request.Data.InitializeData>(exchangesSettings.Team.Value.Data.Dependent.Request.Initialize.GetExchangeEndpointUri());
 
         if (environment.IsDevelopment())
         {
             // "sfc.identity.users.seed.require"
-            EndpointConvention.Map<SFC.Identity.Messages.Commands.RequireUsersSeed>(exchangesSettings.Identity.Value.Domain.User.Seed.RequireSeed.GetExchangeEndpointUri());
+            EndpointConvention.Map<SFC.Identity.Messages.Commands.User.RequireUsersSeed>(exchangesSettings.Identity.Value.Domain.User.Seed.RequireSeed.GetExchangeEndpointUri());
 
             // "sfc.player.players.seed.require"
             EndpointConvention.Map<SFC.Player.Messages.Commands.Player.RequirePlayersSeed>(exchangesSettings.Player.Value.Domain.Player.Seed.RequireSeed.GetExchangeEndpointUri());

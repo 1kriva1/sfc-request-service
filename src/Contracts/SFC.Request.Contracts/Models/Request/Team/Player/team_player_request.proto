@@ -1,0 +1,18 @@
+﻿syntax = "proto3";
+
+package sfc_request;
+
+import "google/protobuf/wrappers.proto";
+
+option csharp_namespace = "SFC.Request.Contracts.Models.Request";
+
+message TeamPlayerRequest
+{
+    int64 id = 1;
+    string user_id = 2;
+    int64 team_id = 3;
+    int64 player_id = 4;
+    int32 status_id = 5;
+    google.protobuf.StringValue team_comment = 6;
+    string player_comment = 7;
+}

@@ -1,0 +1,11 @@
+﻿syntax = "proto3";
+
+package sfc_request;
+
+option csharp_namespace = "SFC.Request.Contracts.Models.Request.Data";
+
+message DataValue
+{
+    int32 id = 1;
+    string title = 2;
+}

@@ -12,4 +12,9 @@
     <ProjectReference Include="..\SFC.Request.Domain\SFC.Request.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Request\Game\Player\" />
+    <Folder Include="Features\Request\Game\Team\" />
+  </ItemGroup>
+
 </Project>

@@ -14,12 +14,16 @@ public static class GrpcExtensions
 
         if (settings?.Endpoints?.TryGetValue(SettingConstants.KestrelInternalEndpoint, out KestrelEndpointSettings? endpoint) ?? false)
         {
-            app.MapGrpcService<RequestService>()
+            app.MapGrpcService<RequestDataService>()
+               .MapInternalService(endpoint.Url);
+
+            app.MapGrpcService<TeamPlayerRequestService>()
                .MapInternalService(endpoint.Url);
         }
         else
         {
-            app.MapGrpcService<RequestService>();
+            app.MapGrpcService<RequestDataService>();
+            app.MapGrpcService<TeamPlayerRequestService>();
         }
 
         return app;

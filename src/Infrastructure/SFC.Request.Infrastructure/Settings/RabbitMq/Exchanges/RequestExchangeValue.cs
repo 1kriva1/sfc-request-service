@@ -18,11 +18,6 @@ public class RequestDataDependentExchange
 
 public class RequestDomainExchange
 {
-    /// <summary>
-    /// Should be replaces by service(s) that required seed for Requests
-    /// </summary>
-    public DomainExchange<RequestRequestDomainEventsExchange> Request { get; set; } = default!;
-
     public RequestTeamDomainExchange Team { get; set; } = default!;
 }
 

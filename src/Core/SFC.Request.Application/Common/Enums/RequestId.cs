@@ -3,11 +3,6 @@ public enum RequestId
 {
     // main
     DatabaseReset,
-    // core
-    CreateRequest,
-    UpdateRequest,
-    GetRequest,
-    GetRequests,
     // data
     InitData,
     ResetData,
@@ -26,5 +21,11 @@ public enum RequestId
     // team player
     CreateTeamPlayer,
     UpdateTeamPlayer,
-    CreateTeamPlayers
+    CreateTeamPlayers,
+    // core
+    GetAllRequestData,
+    CreateTeamPlayerRequest,
+    UpdateTeamPlayerRequest,
+    GetTeamPlayerRequest,
+    GetTeamPlayerRequests
 }

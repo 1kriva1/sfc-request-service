@@ -3,6 +3,8 @@
 using SFC.Request.Application.Common.Mappings.Base;
 using SFC.Request.Application.Features.Common.Dto.Pagination;
 using SFC.Request.Application.Features.Common.Models.Find.Paging;
+using SFC.Request.Application.Features.Request.Data.Queries.Common.Dto;
+using SFC.Request.Domain.Common;
 using SFC.Request.Domain.Entities.Data;
 using SFC.Request.Domain.Entities.Identity;
 using SFC.Request.Domain.Entities.Player;
@@ -63,6 +65,8 @@ public class MappingProfile : BaseMappingProfile
             .ForMember(nameof(PageDto<object>.Metadata), d => d.Ignore());
 
         CreateMap(typeof(PagedList<>), typeof(PageMetadataDto));
+
+        CreateMap(typeof(EnumDataEntity<>), typeof(DataValueDto));
 
         #endregion Generic types        
     }

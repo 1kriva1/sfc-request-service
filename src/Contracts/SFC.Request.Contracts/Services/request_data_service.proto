@@ -1,0 +1,12 @@
+﻿syntax = "proto3";
+
+package sfc_request;
+
+import "Messages/Request/Data/GetAll/get_all_request_data_request.proto";
+import "Messages/Request/Data/GetAll/get_all_request_data_response.proto";
+
+option csharp_namespace = "SFC.Request.Contracts.Services";
+
+service RequestDataService {
+    rpc GetAll (GetAllRequestDataRequest) returns (GetAllRequestDataResponse);
+}

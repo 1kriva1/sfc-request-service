@@ -5,8 +5,8 @@ namespace SFC.Request.Domain.Common;
 /// <summary>
 /// For core entities of the service.
 /// </summary>
-/// <typeparam name="TID">Type for entity identifier.</typeparam>
-public abstract class BaseAuditableEntity<TID> : BaseEntity<TID>, IAuditableEntity
+/// <typeparam name="TId">Type for entity identifier.</typeparam>
+public abstract class BaseAuditableEntity<TId> : BaseEntity<TId>, IAuditableEntity
 {
     public DateTime CreatedDate { get; set; }
 

@@ -101,6 +101,19 @@ public class Localization
                        GetValue(s_localizer?.GetString("TeamPlayerNotFound"),
                            "Team player not found.")!;
 
+    public static string TeamPlayerRequestActiveAlreadyExist =>
+                       GetValue(s_localizer?.GetString("TeamPlayerRequestActiveAlreadyExist"),
+                           "Active team player request already exist.")!;
+
+    public static string RequestAlreadyFinalized =>
+                       GetValue(s_localizer?.GetString("RequestAlreadyFinalized"),
+                           "Request already finalized.")!;
+
+    public static string GetDataValue(string name)
+    {
+        return GetValue(s_localizer?.GetString(name), name)!;
+    }
+
     private static string GetValue(LocalizedString? @string, string defaultValue)
     {
         return @string == null

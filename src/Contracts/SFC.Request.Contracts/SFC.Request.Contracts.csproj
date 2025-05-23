@@ -17,16 +17,20 @@
     <None Remove="Enums\sorting_direction.proto" />
     <None Remove="Headers\auditable_header.proto" />
     <None Remove="Headers\pagination_header.proto" />
-    <None Remove="Messages\Find\Filters\get_requests_filter.proto" />
-    <None Remove="Messages\Find\get_requests_request.proto" />
-    <None Remove="Messages\Find\get_requests_response.proto" />
-    <None Remove="Messages\Get\get_request_request.proto" />
-    <None Remove="Messages\Get\get_request_response.proto" />
+    <None Remove="Messages\Request\Data\GetAll\get_all_request_data_request.proto" />
+    <None Remove="Messages\Request\Data\GetAll\get_all_request_data_response.proto" />
+    <None Remove="Messages\Request\Team\Player\Find\Filters\get_team_player_requests_filter.proto" />
+    <None Remove="Messages\Request\Team\Player\Find\get_team_player_requests_request.proto" />
+    <None Remove="Messages\Request\Team\Player\Find\get_team_player_requests_response.proto" />
+    <None Remove="Messages\Request\Team\Player\Get\get_team_player_request_request.proto" />
+    <None Remove="Messages\Request\Team\Player\Get\get_team_player_request_response.proto" />
     <None Remove="Models\Common\pagination.proto" />
     <None Remove="Models\Common\range_limit.proto" />
     <None Remove="Models\Common\sorting.proto" />
-    <None Remove="Models\Request\request.proto" />
-    <None Remove="Services\request_service.proto" />
+    <None Remove="Models\Request\Data\data_value.proto" />
+    <None Remove="Models\Request\team_player_request.proto" />
+    <None Remove="Services\request_data_service.proto" />
+    <None Remove="Services\team_player_request_service.proto" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,16 +46,20 @@
     <Protobuf Include="Enums\sorting_direction.proto" />
     <Protobuf Include="Headers\auditable_header.proto" />
     <Protobuf Include="Headers\pagination_header.proto" />
-    <Protobuf Include="Messages\Find\Filters\get_requests_filter.proto" />
-    <Protobuf Include="Messages\Find\get_requests_request.proto" />
-    <Protobuf Include="Messages\Find\get_requests_response.proto" />
-    <Protobuf Include="Messages\Get\get_request_request.proto" />
-    <Protobuf Include="Messages\Get\get_request_response.proto" />
+    <Protobuf Include="Messages\Request\Data\GetAll\get_all_request_data_request.proto" />
+    <Protobuf Include="Messages\Request\Data\GetAll\get_all_request_data_response.proto" />
+    <Protobuf Include="Messages\Request\Team\Player\Find\Filters\get_team_player_requests_filter.proto" />
+    <Protobuf Include="Messages\Request\Team\Player\Find\get_team_player_requests_request.proto" />
+    <Protobuf Include="Messages\Request\Team\Player\Find\get_team_player_requests_response.proto" />
+    <Protobuf Include="Messages\Request\Team\Player\Get\get_team_player_request_request.proto" />
+    <Protobuf Include="Messages\Request\Team\Player\Get\get_team_player_request_response.proto" />
     <Protobuf Include="Models\Common\pagination.proto" />
     <Protobuf Include="Models\Common\range_limit.proto" />
     <Protobuf Include="Models\Common\sorting.proto" />
-    <Protobuf Include="Models\Request\request.proto" />
-    <Protobuf Include="Services\request_service.proto" />
+    <Protobuf Include="Models\Request\Data\data_value.proto" />
+    <Protobuf Include="Models\Request\Team\Player\team_player_request.proto" />
+    <Protobuf Include="Services\request_data_service.proto" />
+    <Protobuf Include="Services\team_player_request_service.proto" />
   </ItemGroup>
 
 </Project>

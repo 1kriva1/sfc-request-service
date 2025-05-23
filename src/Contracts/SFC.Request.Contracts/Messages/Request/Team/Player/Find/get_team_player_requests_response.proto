@@ -1,0 +1,12 @@
+﻿syntax = "proto3";
+
+package sfc_request;
+
+import "Models/Request/Team/Player/team_player_request.proto";
+
+option csharp_namespace = "SFC.Request.Contracts.Messages.Request.Team.Player.Find";
+
+message GetTeamPlayerRequestsResponse
+{
+    repeated TeamPlayerRequest items = 1;
+}

@@ -10,10 +10,10 @@ using SFC.Request.Application.Interfaces.Identity;
 using SFC.Request.Application.Interfaces.Metadata;
 using SFC.Request.Application.Interfaces.Player;
 using SFC.Request.Application.Interfaces.Reference;
-using SFC.Request.Application.Interfaces.Request;
+using SFC.Request.Application.Interfaces.Request.Data;
+using SFC.Request.Application.Interfaces.Request.Team.Player;
 using SFC.Request.Application.Interfaces.Team.General;
 using SFC.Request.Application.Interfaces.Team.Player;
-using SFC.Request.Contracts.Services;
 using SFC.Request.Infrastructure.Authorization.OwnPlayer;
 using SFC.Request.Infrastructure.Authorization.OwnRequest;
 using SFC.Request.Infrastructure.Authorization.OwnTeam;
@@ -25,9 +25,12 @@ using SFC.Request.Infrastructure.Services.Identity;
 using SFC.Request.Infrastructure.Services.Metadata;
 using SFC.Request.Infrastructure.Services.Player;
 using SFC.Request.Infrastructure.Services.Reference;
-using SFC.Request.Infrastructure.Services.Request;
+using SFC.Request.Infrastructure.Services.Request.Data;
+using SFC.Request.Infrastructure.Services.Request.Team.Player;
 using SFC.Request.Infrastructure.Services.Team.General;
 using SFC.Request.Infrastructure.Services.Team.Player;
+
+using TeamPlayerRequestService = SFC.Request.Infrastructure.Services.Request.Team.Player.TeamPlayerRequestService;
 
 namespace SFC.Request.Infrastructure;
 public static class InfrastructureRegistration
@@ -67,8 +70,9 @@ public static class InfrastructureRegistration
         builder.Services.AddTransient<IPlayerSeedService, PlayerSeedService>();
         builder.Services.AddTransient<ITeamSeedService, TeamSeedService>();
         builder.Services.AddTransient<ITeamPlayerSeedService, TeamPlayerSeedService>();
-        builder.Services.AddTransient<IRequestService, SFC.Request.Infrastructure.Services.Request.RequestService>();
-        builder.Services.AddTransient<IRequestSeedService, RequestSeedService>();
+        builder.Services.AddTransient<IRequestDataService, RequestDataService>();
+        builder.Services.AddTransient<ITeamPlayerRequestService, TeamPlayerRequestService>();
+        builder.Services.AddTransient<ITeamPlayerRequestSeedService, TeamPlayerRequestSeedService>();
 
         // grpc
         builder.Services.AddTransient<IIdentityService, IdentityService>();

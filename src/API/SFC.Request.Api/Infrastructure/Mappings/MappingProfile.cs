@@ -3,14 +3,17 @@
 using Google.Protobuf.WellKnownTypes;
 
 using SFC.Request.Api.Infrastructure.Models.Common;
+using SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Common;
 using SFC.Request.Application.Common.Extensions;
 using SFC.Request.Application.Common.Mappings.Base;
 using SFC.Request.Application.Features.Common.Dto.Common;
 using SFC.Request.Application.Features.Common.Dto.Pagination;
-using SFC.Request.Application.Features.Request.Common.Dto;
-using SFC.Request.Application.Features.Request.Queries.Find;
-using SFC.Request.Application.Features.Request.Queries.Find.Dto.Filters;
-using SFC.Request.Application.Features.Request.Queries.Get;
+using SFC.Request.Application.Features.Request.Data.Queries.Common.Dto;
+using SFC.Request.Application.Features.Request.Data.Queries.GetAll;
+using SFC.Request.Application.Features.Request.Team.Player.Common.Dto;
+using SFC.Request.Application.Features.Request.Team.Player.Queries.Find;
+using SFC.Request.Application.Features.Request.Team.Player.Queries.Find.Dto.Filters;
+using SFC.Request.Application.Features.Request.Team.Player.Queries.Get;
 
 namespace SFC.Request.Api.Infrastructure.Mappings;
 
@@ -36,6 +39,9 @@ public class MappingProfile : BaseMappingProfile
         CreateMap<Duration, TimeSpan>()
             .ConvertUsing(value => value.ToTimeSpan());
 
+        CreateMap<long, TeamPlayerRequestTeamModel>()
+            .ConvertUsing(teamId => new TeamPlayerRequestTeamModel { Id = teamId });
+
         #endregion Simple types
 
         #region Generic types
@@ -46,31 +52,40 @@ public class MappingProfile : BaseMappingProfile
 
         #region Complex types
 
+        // data
+        CreateMapRequestDataContracts();
+
         // contracts
         CreateMapRequestContracts();
 
         #endregion Complex types        
     }
 
+    private void CreateMapRequestDataContracts()
+    {
+        CreateMap<DataValueDto, SFC.Request.Contracts.Models.Request.Data.DataValue>();
+        CreateMap<GetAllRequestDataViewModel, SFC.Request.Contracts.Messages.Request.Data.GetAll.GetAllRequestDataResponse>();
+    }
+
     private void CreateMapRequestContracts()
     {
         // get request
-        CreateMap<RequestDto, SFC.Request.Contracts.Models.Request.Request>();
-        CreateMap<GetRequestViewModel, SFC.Request.Contracts.Messages.Get.GetRequestResponse>();
-        CreateMap<SFC.Request.Contracts.Messages.Get.GetRequestRequest, GetRequestQuery>();
-        CreateMap<RequestDto, SFC.Request.Contracts.Headers.AuditableHeader>()
+        CreateMap<TeamPlayerRequestDto, SFC.Request.Contracts.Models.Request.TeamPlayerRequest>();
+        CreateMap<GetTeamPlayerRequestViewModel, SFC.Request.Contracts.Messages.Request.Team.Player.Get.GetTeamPlayerRequestResponse>();
+        CreateMap<SFC.Request.Contracts.Messages.Request.Team.Player.Get.GetTeamPlayerRequestRequest, GetTeamPlayerRequestQuery>();
+        CreateMap<TeamPlayerRequestDto, SFC.Request.Contracts.Headers.AuditableHeader>()
             .IgnoreAllNonExisting();
 
         // get requests
         // (filters)
-        CreateMap<SFC.Request.Contracts.Messages.Find.GetRequestsRequest, GetRequestsQuery>();
+        CreateMap<SFC.Request.Contracts.Messages.Request.Team.Player.Find.GetTeamPlayerRequestsRequest, GetTeamPlayerRequestsQuery>();
         CreateMap<SFC.Request.Contracts.Models.Common.Pagination, PaginationDto>();
         CreateMap<SFC.Request.Contracts.Models.Common.Sorting, SortingDto>();
-        CreateMap<SFC.Request.Contracts.Messages.Find.Filters.GetRequestsFilter, GetRequestsFilterDto>();
+        CreateMap<SFC.Request.Contracts.Messages.Request.Team.Player.Find.Filters.GetTeamPlayerRequestsFilter, GetTeamPlayerRequestsFilterDto>();
         CreateMap(typeof(SFC.Request.Contracts.Models.Common.RangeLimit), typeof(RangeLimitDto<>));
         // (result)
-        CreateMap<GetRequestsViewModel, SFC.Request.Contracts.Messages.Find.GetRequestsResponse>();
-        CreateMap<SFC.Request.Application.Features.Request.Common.Dto.RequestDto, SFC.Request.Contracts.Models.Request.Request>();
+        CreateMap<GetTeamPlayerRequestsViewModel, SFC.Request.Contracts.Messages.Request.Team.Player.Find.GetTeamPlayerRequestsResponse>();
+        CreateMap<TeamPlayerRequestDto, SFC.Request.Contracts.Models.Request.TeamPlayerRequest>();
         // (headers)
         CreateMap<PageMetadataDto, SFC.Request.Contracts.Headers.PaginationHeader>()
             .IgnoreAllNonExisting();

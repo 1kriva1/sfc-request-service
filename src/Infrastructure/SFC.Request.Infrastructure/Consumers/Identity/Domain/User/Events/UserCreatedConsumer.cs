@@ -5,24 +5,17 @@ using MassTransit;
 using MediatR;
 
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 
-using SFC.Identity.Messages.Events;
+using SFC.Identity.Messages.Events.User;
 using SFC.Request.Application.Features.Identity.Commands.Create;
 using SFC.Request.Infrastructure.Extensions;
 using SFC.Request.Infrastructure.Settings.RabbitMq;
 
 namespace SFC.Request.Infrastructure.Consumers.Identity.Domain.User.Events;
-public class UserCreatedConsumer(
-    IMapper mapper,
-    ILogger<UserCreatedConsumer> logger,
-    ISender mediator) : IConsumer<UserCreated>
+public class UserCreatedConsumer(IMapper mapper, ISender mediator) : IConsumer<UserCreated>
 {
-#pragma warning disable CA1823 // Avoid unused private fields
     private readonly IMapper _mapper = mapper;
-    private readonly ILogger<UserCreatedConsumer> _logger = logger;
     private readonly ISender _mediator = mediator;
-#pragma warning restore CA1823 // Avoid unused private fields
 
     public async Task Consume(ConsumeContext<UserCreated> context)
     {

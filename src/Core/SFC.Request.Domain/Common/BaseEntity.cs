@@ -7,10 +7,10 @@ namespace SFC.Request.Domain.Common;
 /// <summary>
 /// Main parent class for all entities of ther service.
 /// </summary>
-/// <typeparam name="TID">Type for entity identifier.</typeparam>
-public abstract class BaseEntity<TID> : IEntity
+/// <typeparam name="TId">Type for entity identifier.</typeparam>
+public abstract class BaseEntity<TId> : IEntity
 {
-    public TID Id { get; set; } = default!;
+    public TId Id { get; set; } = default!;
 
     private readonly List<BaseEvent> _domainEvents = [];
 

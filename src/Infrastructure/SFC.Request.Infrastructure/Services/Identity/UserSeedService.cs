@@ -2,7 +2,7 @@
 
 using Microsoft.Extensions.Configuration;
 
-using SFC.Identity.Messages.Commands;
+using SFC.Identity.Messages.Commands.User;
 using SFC.Request.Application.Interfaces.Identity;
 using SFC.Request.Infrastructure.Extensions;
 using SFC.Request.Infrastructure.Settings.RabbitMq;
