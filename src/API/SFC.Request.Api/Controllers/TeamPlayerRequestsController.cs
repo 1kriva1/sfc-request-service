@@ -7,6 +7,7 @@ using SFC.Request.Api.Infrastructure.Models.Pagination;
 using SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Create;
 using SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Find;
 using SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Get;
+using SFC.Request.Api.Infrastructure.Models.Request.Team.Player.GetAll;
 using SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Update.Decline;
 using SFC.Request.Application.Features.Common.Base;
 using SFC.Request.Application.Features.Request.Team.Player.Commands.Create;
@@ -14,6 +15,7 @@ using SFC.Request.Application.Features.Request.Team.Player.Commands.Update;
 using SFC.Request.Application.Features.Request.Team.Player.Queries.Find;
 using SFC.Request.Application.Features.Request.Team.Player.Queries.Find.Dto.Filters;
 using SFC.Request.Application.Features.Request.Team.Player.Queries.Get;
+using SFC.Request.Application.Features.Request.Team.Player.Queries.GetAll;
 using SFC.Request.Infrastructure.Constants;
 
 namespace SFC.Request.Api.Controllers;
@@ -53,7 +55,7 @@ public class TeamPlayerRequestsController : ApiControllerBase
                                                               .ConfigureAwait(false);
 
         return CreatedAtRoute("GetTeamPlayerRequest",
-            new { teamId = model.Request.TeamId, playerId = model.Request.Player.Id, requestId = model.Request.Id },
+            new { teamId = model.Request.Team.Id, playerId = model.Request.Player.Id, requestId = model.Request.Id },
             Mapper.Map<CreateTeamPlayerRequestResponse>(model));
     }
 
@@ -183,21 +185,44 @@ public class TeamPlayerRequestsController : ApiControllerBase
     }
 
     /// <summary>
+    /// Return team player request models by team Id.
+    /// </summary>
+    /// <param name="teamId">Team unique identifier.</param>
+    /// <returns>An ActionResult of type GetAllTeamPlayerRequestsResponse</returns>
+    /// <response code="200">Returns team player request models.</response>
+    /// <response code="401">Returns when **failed** authentication.</response>
+    [HttpGet("Teams/{teamId}/Players")]
+    [Authorize(Policy.General)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<ActionResult<GetAllTeamPlayerRequestsResponse>> GetTeamPlayerRequestsAsync([FromRoute] long teamId)
+    {
+        GetAllTeamPlayerRequestsQuery query = new() { TeamId = teamId };
+
+        GetAllTeamPlayerRequestsViewModel teamPlayerRequests = await Mediator.Send(query).ConfigureAwait(false);
+
+        return Ok(Mapper.Map<GetAllTeamPlayerRequestsResponse>(teamPlayerRequests));
+    }
+
+    /// <summary>
     /// Return list of team player requests.
     /// </summary>
+    /// <param name="teamId">Team unique identifier.</param>
     /// <param name="request">Get team player requests request.</param>
     /// <returns>An ActionResult of type GetTeamPlayerRequestsResponse</returns>
     /// <response code="200">Returns list of team player requests with pagination header.</response>
     /// <response code="400">Returns **validation** errors.</response>
     /// <response code="401">Returns when **failed** authentication.</response>
-    [HttpGet("Teams/Players/Find")]
+    [HttpGet("Teams/{teamId}/Players/Find")]
     [Authorize(Policy.General)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(BaseErrorResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<ActionResult<GetTeamPlayerRequestsResponse>> GetTeamPlayerRequestsAsync([FromQuery] GetTeamPlayerRequestsRequest request)
+    public async Task<ActionResult<GetTeamPlayerRequestsResponse>> GetTeamPlayerRequestsAsync([FromRoute] long teamId, [FromQuery] GetTeamPlayerRequestsRequest request)
     {
-        BasePaginationRequest<GetTeamPlayerRequestsViewModel, GetTeamPlayerRequestsFilterDto> query = Mapper.Map<GetTeamPlayerRequestsQuery>(request);
+        BasePaginationRequest<GetTeamPlayerRequestsViewModel, GetTeamPlayerRequestsFilterDto> query =
+            Mapper.Map<GetTeamPlayerRequestsQuery>(request)
+                  .SetTeamId(teamId);
 
         GetTeamPlayerRequestsViewModel result = await Mediator.Send(query)
                                                               .ConfigureAwait(false);

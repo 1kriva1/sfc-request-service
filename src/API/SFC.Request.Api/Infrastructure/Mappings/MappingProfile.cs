@@ -39,9 +39,6 @@ public class MappingProfile : BaseMappingProfile
         CreateMap<Duration, TimeSpan>()
             .ConvertUsing(value => value.ToTimeSpan());
 
-        CreateMap<long, TeamPlayerRequestTeamModel>()
-            .ConvertUsing(teamId => new TeamPlayerRequestTeamModel { Id = teamId });
-
         #endregion Simple types
 
         #region Generic types

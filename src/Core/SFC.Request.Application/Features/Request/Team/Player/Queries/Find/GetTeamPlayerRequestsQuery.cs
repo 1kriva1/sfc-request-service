@@ -6,4 +6,13 @@ namespace SFC.Request.Application.Features.Request.Team.Player.Queries.Find;
 public class GetTeamPlayerRequestsQuery : BasePaginationRequest<GetTeamPlayerRequestsViewModel, GetTeamPlayerRequestsFilterDto>
 {
     public override RequestId RequestId { get => RequestId.GetTeamPlayerRequests; }
+
+    public GetTeamPlayerRequestsQuery SetTeamId(long teamId)
+    {
+        Filter = Filter ?? new GetTeamPlayerRequestsFilterDto();
+
+        Filter.TeamId = teamId;
+
+        return this;
+    }
 }

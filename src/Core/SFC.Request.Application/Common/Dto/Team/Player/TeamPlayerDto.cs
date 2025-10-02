@@ -1,4 +1,5 @@
 ﻿using SFC.Request.Application.Common.Dto.Common;
+using SFC.Request.Application.Common.Dto.Player.General;
 using SFC.Request.Application.Common.Mappings.Interfaces;
 using SFC.Request.Domain.Entities.Team.Player;
 
@@ -14,4 +15,6 @@ public class TeamPlayerDto : AuditableDto, IMapFromReverse<TeamPlayer>
     public int StatusId { get; set; }
 
     public Guid UserId { get; set; }
+
+    public required PlayerDto Player { get; set; }
 }

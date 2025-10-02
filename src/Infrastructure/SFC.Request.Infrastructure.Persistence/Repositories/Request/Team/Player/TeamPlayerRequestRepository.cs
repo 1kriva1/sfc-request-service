@@ -14,6 +14,32 @@ public class TeamPlayerRequestRepository(RequestDbContext context)
 {
     #region Public
 
+    public Task<TeamPlayerRequest?> GetByIdAsync(long id, long teamId, long playerId)
+    {
+        return Context.TeamPlayerRequests
+                      .ThanIncludePlayer()
+                      .ThanIncludeTeam()
+                      .FirstOrDefaultAsync(request => request.Id == id && request.TeamId == teamId && request.Player.Id == playerId);
+    }
+
+    public async Task<IEnumerable<TeamPlayerRequest>> GetByIdsAsync(IEnumerable<long> teamIds, IEnumerable<long> playerIds)
+    {
+        return await Context.TeamPlayerRequests
+                            .Where(request => teamIds.Contains(request.TeamId) && playerIds.Contains(request.PlayerId))
+                            .ToListAsync()
+                            .ConfigureAwait(true);
+    }
+
+    public async Task<IReadOnlyList<TeamPlayerRequest>> ListAllAsync(long teamId)
+    {
+        return await Context.TeamPlayerRequests
+                            .ThanIncludePlayer()
+                            .ThanIncludeTeam()
+                            .Where(teamPlayer => teamPlayer.TeamId == teamId)
+                            .ToListAsync()
+                            .ConfigureAwait(true);
+    }
+
     public Task<bool> AnyAsync(long id)
     {
         return Context.TeamPlayerRequests.AnyAsync(u => u.Id == id);
@@ -31,29 +57,6 @@ public class TeamPlayerRequestRepository(RequestDbContext context)
             request.Player.Id == playerId);
     }
 
-    public Task<TeamPlayerRequest?> GetByIdAsync(long id, long teamId, long playerId)
-    {
-        return Context.TeamPlayerRequests
-                      .Include(x => x.Player).ThenInclude(p => p.GeneralProfile)
-                      .Include(x => x.Player).ThenInclude(p => p.FootballProfile)
-                      .Include(x => x.Player).ThenInclude(p => p.Availability)
-                      .Include(x => x.Player).ThenInclude(p => p.Availability.Days)
-                      .Include(x => x.Player).ThenInclude(p => p.Points)
-                      .Include(x => x.Player).ThenInclude(p => p.Tags)
-                      .Include(x => x.Player).ThenInclude(p => p.Stats)
-                      .Include(x => x.Player).ThenInclude(p => p.Photo)
-                      .FirstOrDefaultAsync(request => request.Id == id && request.TeamId == teamId && request.Player.Id == playerId);
-    }
-
-    public async Task<IEnumerable<TeamPlayerRequest>> GetByIdsAsync(IEnumerable<long> teamIds, IEnumerable<long> playerIds)
-    {
-        return await Context.TeamPlayerRequests
-                            .Where(request => teamIds.Contains(request.TeamId) && playerIds.Contains(request.PlayerId))
-                            .ToListAsync()
-                            .ConfigureAwait(true);
-    }
-
-
     public async Task<TeamPlayerRequest[]> AddRangeIfNotExistsAsync(params TeamPlayerRequest[] entities)
     {
         await Context.Set<TeamPlayerRequest>().AddRangeIfNotExistsAsync<TeamPlayerRequest, long>(entities).ConfigureAwait(true);
@@ -70,14 +73,8 @@ public class TeamPlayerRequestRepository(RequestDbContext context)
     public override Task<PagedList<TeamPlayerRequest>> FindAsync(FindParameters<TeamPlayerRequest> parameters)
     {
         return Context.TeamPlayerRequests
-                      .Include(x => x.Player).ThenInclude(p => p.GeneralProfile)
-                      .Include(x => x.Player).ThenInclude(p => p.FootballProfile)
-                      .Include(x => x.Player).ThenInclude(p => p.Availability)
-                      .Include(x => x.Player).ThenInclude(p => p.Availability.Days)
-                      .Include(x => x.Player).ThenInclude(p => p.Points)
-                      .Include(x => x.Player).ThenInclude(p => p.Tags)
-                      .Include(x => x.Player).ThenInclude(p => p.Stats)
-                      .Include(x => x.Player).ThenInclude(p => p.Photo)
+                      .ThanIncludePlayer()
+                      .ThanIncludeTeam()
                       .AsQueryable<TeamPlayerRequest>()
                       .PaginateAsync(parameters);
     }

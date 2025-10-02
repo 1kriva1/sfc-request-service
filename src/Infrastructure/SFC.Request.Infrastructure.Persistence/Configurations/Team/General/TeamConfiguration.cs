@@ -23,6 +23,11 @@ public class TeamConfiguration : AuditableReferenceEntityConfiguration<TeamEntit
                .HasForeignKey<TeamFinancialProfile>()
                .IsRequired(true);
 
+        builder.HasOne(e => e.InventaryProfile)
+               .WithOne(e => e.Team)
+               .HasForeignKey<TeamInventaryProfile>()
+               .IsRequired(true);
+
         builder.HasMany(e => e.Availability)
                .WithOne(e => e.Team)
                .HasForeignKey(DatabaseConstants.TeamForeignKey);

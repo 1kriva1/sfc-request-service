@@ -83,10 +83,20 @@
             <response code="401">Returns when **failed** authentication.</response>
             <response code="404">Returns when invite **not found**.</response>
         </member>
-        <member name="M:SFC.Request.Api.Controllers.TeamPlayerRequestsController.GetTeamPlayerRequestsAsync(SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Find.GetTeamPlayerRequestsRequest)">
+        <member name="M:SFC.Request.Api.Controllers.TeamPlayerRequestsController.GetTeamPlayerRequestsAsync(System.Int64)">
+            <summary>
+            Return team player request models by team Id.
+            </summary>
+            <param name="teamId">Team unique identifier.</param>
+            <returns>An ActionResult of type GetAllTeamPlayerRequestsResponse</returns>
+            <response code="200">Returns team player request models.</response>
+            <response code="401">Returns when **failed** authentication.</response>
+        </member>
+        <member name="M:SFC.Request.Api.Controllers.TeamPlayerRequestsController.GetTeamPlayerRequestsAsync(System.Int64,SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Find.GetTeamPlayerRequestsRequest)">
             <summary>
             Return list of team player requests.
             </summary>
+            <param name="teamId">Team unique identifier.</param>
             <param name="request">Get team player requests request.</param>
             <returns>An ActionResult of type GetTeamPlayerRequestsResponse</returns>
             <response code="200">Returns list of team player requests with pagination header.</response>
@@ -430,157 +440,157 @@
             Filter by rating.
             </summary>
         </member>
-        <member name="T:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerAvailabilityModel">
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Player.PlayerAvailabilityModel">
             <summary>
             Player's **availability** model (when player is available to play).
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerAvailabilityModel.Days">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.PlayerAvailabilityModel.Days">
             <summary>
             Days of week.
             </summary>
         </member>
-        <member name="T:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerFootballProfileModel">
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Player.PlayerFootballProfileModel">
             <summary>
             Player's **football** profile model.
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerFootballProfileModel.Height">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.PlayerFootballProfileModel.Height">
             <summary>
             Height.
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerFootballProfileModel.Weight">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.PlayerFootballProfileModel.Weight">
             <summary>
             Weight.
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerFootballProfileModel.Position">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.PlayerFootballProfileModel.Position">
             <summary>
             Position on field.
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerFootballProfileModel.WorkingFoot">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.PlayerFootballProfileModel.WorkingFoot">
             <summary>
             Describe what **foot** player prefer to use.
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerFootballProfileModel.GameStyle">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.PlayerFootballProfileModel.GameStyle">
             <summary>
             **Style** of play.
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerFootballProfileModel.Skill">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.PlayerFootballProfileModel.Skill">
             <summary>
             **Dribbling** skill value.
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerFootballProfileModel.PhysicalCondition">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.PlayerFootballProfileModel.PhysicalCondition">
             <summary>
             Physical condition value.
             </summary>
         </member>
-        <member name="T:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerGeneralProfileModel">
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Player.PlayerGeneralProfileModel">
             <summary>
             Player's **general** profile model.
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerGeneralProfileModel.FirstName">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.PlayerGeneralProfileModel.FirstName">
             <summary>
             First name.
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerGeneralProfileModel.LastName">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.PlayerGeneralProfileModel.LastName">
             <summary>
             Last name.
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerGeneralProfileModel.Photo">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.PlayerGeneralProfileModel.Photo">
             <summary>
             Photo/avatar.
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerGeneralProfileModel.Birthday">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.PlayerGeneralProfileModel.Birthday">
             <summary>
             Date of birth.
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerGeneralProfileModel.City">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.PlayerGeneralProfileModel.City">
             <summary>
             **City** where player will play football.
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerGeneralProfileModel.FreePlay">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.PlayerGeneralProfileModel.FreePlay">
             <summary>
              Describe if player can **pay** for football matches.
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerGeneralProfileModel.Tags">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.PlayerGeneralProfileModel.Tags">
             <summary>
             Player's **tags**.
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerGeneralProfileModel.Availability">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.PlayerGeneralProfileModel.Availability">
             <summary>
             Player's **availability** model.
             </summary>
         </member>
-        <member name="T:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerModel">
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Player.PlayerModel">
             <summary>
             Player model.
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerModel.Id">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.PlayerModel.Id">
             <summary>
             Unique identifier.
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerModel.Profile">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.PlayerModel.Profile">
             <summary>
             Player's profile model.
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerModel.Stats">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.PlayerModel.Stats">
             <summary>
             Player's stats model.
             </summary>
         </member>
-        <member name="T:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerProfileModel">
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Player.PlayerProfileModel">
             <summary>
             Player **profile** model for get players request.
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerProfileModel.General">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.PlayerProfileModel.General">
             <summary>
             General profile.
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerProfileModel.Football">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.PlayerProfileModel.Football">
             <summary>
             Football profile.
             </summary>
         </member>
-        <member name="T:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerStatsModel">
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Player.PlayerStatsModel">
             <summary>
             Player stats model.
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerStatsModel.Values">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.PlayerStatsModel.Values">
             <summary>
             Stats.
             </summary>
         </member>
-        <member name="T:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerStatValueModel">
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Player.PlayerStatValueModel">
             <summary>
             Player stat value model.
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerStatValueModel.Type">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.PlayerStatValueModel.Type">
             <summary>
             Type of stat
             </summary>
         </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.Result.PlayerStatValueModel.Value">
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Player.PlayerStatValueModel.Value">
             <summary>
             Stat value.
             </summary>
@@ -627,7 +637,7 @@
         </member>
         <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Common.TeamPlayerRequestModel.Team">
             <summary>
-            Request related to this team.
+            Team invite related to this team.
             </summary>
         </member>
         <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Common.TeamPlayerRequestModel.Status">
@@ -643,16 +653,6 @@
         <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Common.TeamPlayerRequestModel.PlayerComment">
             <summary>
             Comment from player to team .
-            </summary>
-        </member>
-        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Common.TeamPlayerRequestTeamModel">
-            <summary>
-            Team model for team player request.
-            </summary>
-        </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Common.TeamPlayerRequestTeamModel.Id">
-            <summary>
-            Team unique identifier.
             </summary>
         </member>
         <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Create.CreateTeamPlayerRequestModel">
@@ -720,6 +720,16 @@
             **Get** team player requests response.
             </summary>
         </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.GetAll.GetAllTeamPlayerRequestsResponse">
+            <summary>
+            **Get** all team player invites response.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.GetAll.GetAllTeamPlayerRequestsResponse.Requests">
+            <summary>
+            Team player request models.
+            </summary>
+        </member>
         <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Get.GetTeamPlayerRequestResponse">
             <summary>
             **Get** request response.
@@ -748,6 +758,146 @@
         <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Update.Decline.DeclineTeamPlayerRequestRequest.Request">
             <summary>
             Decline team player request model.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Team.General.TeamAvailabilityModel">
+            <summary>
+            Team's **availability** model (when team is available to play).
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.TeamAvailabilityModel.Day">
+            <summary>
+            Day of week.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Team.General.TeamFinancialProfileModel">
+            <summary>
+            Team's **financial** profile model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.TeamFinancialProfileModel.FreePlay">
+            <summary>
+            Team play only on free field and without any extra expansions.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Team.General.TeamGeneralProfileModel">
+            <summary>
+            Team's **general** profile model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.TeamGeneralProfileModel.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.TeamGeneralProfileModel.City">
+            <summary>
+            **City** where team will play football.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.TeamGeneralProfileModel.Location">
+            <summary>
+            Location of main team field.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.TeamGeneralProfileModel.Description">
+            <summary>
+            A few words about team.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.TeamGeneralProfileModel.Logo">
+            <summary>
+            Logo/Photo/Avatar.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.TeamGeneralProfileModel.Tags">
+            <summary>
+            Team's **tags**.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.TeamGeneralProfileModel.Availability">
+            <summary>
+            Team's **availabilities** to play (at what day and time can play).
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Team.General.TeamInventaryProfileModel">
+            <summary>
+            Team's **inventary** profile model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.TeamInventaryProfileModel.Shirts">
+            <summary>
+            In what shirts team can play (multiple value).
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.TeamInventaryProfileModel.HasManiches">
+            <summary>
+            Define if team has maniches.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Team.General.TeamModel">
+            <summary>
+            Team model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.TeamModel.Id">
+            <summary>
+            Unique identifier.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.TeamModel.Status">
+            <summary>
+            Team status.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.TeamModel.Profile">
+            <summary>
+            Team's profile model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.TeamModel.Players">
+            <summary>
+            Team's players.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Team.General.TeamProfileModel">
+            <summary>
+            Team **profile** model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.TeamProfileModel.General">
+            <summary>
+            General profile.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.TeamProfileModel.Financial">
+            <summary>
+            Financial profile.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.TeamProfileModel.Inventary">
+            <summary>
+            Inventary profile.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Team.Player.TeamPlayerModel">
+            <summary>
+            Team player model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.Player.TeamPlayerModel.Id">
+            <summary>
+            Unique identifier.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.Player.TeamPlayerModel.Status">
+            <summary>
+            Team player status.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.Player.TeamPlayerModel.Player">
+            <summary>
+            Team player related to this player.
             </summary>
         </member>
     </members>

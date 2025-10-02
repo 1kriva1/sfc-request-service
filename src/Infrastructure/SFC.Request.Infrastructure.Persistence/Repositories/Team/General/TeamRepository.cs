@@ -12,13 +12,8 @@ public class TeamRepository(TeamDbContext context)
     public override Task<TeamEntity?> GetByIdAsync(long id)
     {
         return Context.Teams
-                    .Include(p => p.GeneralProfile)
-                    .Include(p => p.FinancialProfile)
-                    .Include(p => p.Shirts)
-                    .Include(p => p.Availability)
-                    .Include(p => p.Tags)
-                    .Include(p => p.Logo)
-                    .FirstOrDefaultAsync(p => p.Id == id);
+                      .IncludeTeam()
+                      .FirstOrDefaultAsync(p => p.Id == id);
     }
 
     public async Task<TeamEntity[]> AddRangeIfNotExistsAsync(params TeamEntity[] entities)

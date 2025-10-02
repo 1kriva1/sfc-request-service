@@ -12,6 +12,8 @@ public class Team : BaseAuditableReferenceEntity<long>, IUserEntity
 
     public required TeamFinancialProfile FinancialProfile { get; set; }
 
+    public required TeamInventaryProfile InventaryProfile { get; set; }
+
     public TeamLogo? Logo { get; set; }
 
     public ICollection<TeamAvailability> Availability { get; } = [];
