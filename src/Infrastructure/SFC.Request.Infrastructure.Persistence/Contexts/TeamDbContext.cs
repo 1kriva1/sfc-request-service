@@ -92,6 +92,8 @@ public class TeamDbContext(
 
         modelBuilder.ApplyConfiguration(new TeamGeneralProfileConfiguration());
 
+        modelBuilder.ApplyConfiguration(new TeamInventaryProfileConfiguration());
+
         modelBuilder.ApplyConfiguration(new TeamLogoConfiguration());
 
         modelBuilder.ApplyConfiguration(new TeamShirtConfiguration());

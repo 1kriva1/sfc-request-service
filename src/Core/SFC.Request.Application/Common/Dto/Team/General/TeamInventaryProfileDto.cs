@@ -1,15 +1,10 @@
-﻿using AutoMapper;
-
-using SFC.Request.Application.Common.Mappings.Interfaces;
+﻿using SFC.Request.Application.Common.Mappings.Interfaces;
+using SFC.Request.Domain.Entities.Team.General;
 
 namespace SFC.Request.Application.Common.Dto.Team.General;
-public class TeamInventaryProfileDto : IMapFrom<TeamEntity>
+public class TeamInventaryProfileDto : IMapToReverse<TeamInventaryProfile>
 {
     public IEnumerable<int> Shirts { get; set; } = [];
 
-    public void Mapping(Profile profile)
-    {
-        profile.CreateMap<TeamEntity, TeamInventaryProfileDto>()
-                    .ForMember(p => p.Shirts, d => d.MapFrom(z => z.Shirts));
-    }
+    public bool HasManiches { get; set; }
 }

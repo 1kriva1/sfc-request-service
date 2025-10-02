@@ -30,7 +30,7 @@
 
   <ItemGroup>
     <PackageReference Include="SFC.Team.Contracts" Version="0.0.4" />
-    <PackageReference Include="SFC.Team.Messages" Version="0.0.20" />
+    <PackageReference Include="SFC.Team.Messages" Version="0.0.21" />
   </ItemGroup>
 
   <ItemGroup>

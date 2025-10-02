@@ -13,6 +13,12 @@ public static class GetTeamPlayerRequestsFiltersExtensions
     public static IEnumerable<Filter<TeamPlayerRequest>> BuildSearchFilters(this GetTeamPlayerRequestsFilterDto filter, DateTime now)
     {
         return [
+            // team
+            new()
+            {
+                Condition = true,
+                Expression = invite => invite.TeamId == filter!.TeamId
+            },
             // request
             new()
             {

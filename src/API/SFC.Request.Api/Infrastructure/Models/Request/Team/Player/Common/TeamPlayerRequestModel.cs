@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 
-using SFC.Request.Api.Infrastructure.Models.Player.Result;
+using SFC.Request.Api.Infrastructure.Models.Player;
+using SFC.Request.Api.Infrastructure.Models.Team.General;
 using SFC.Request.Application.Common.Mappings.Interfaces;
 using SFC.Request.Application.Features.Request.Team.Player.Common.Dto;
 
@@ -22,9 +23,9 @@ public class TeamPlayerRequestModel : IMapFrom<TeamPlayerRequestDto>
     public required PlayerModel Player { get; set; }
 
     /// <summary>
-    /// Request related to this team.
+    /// Team invite related to this team.
     /// </summary>
-    public required TeamPlayerRequestTeamModel Team { get; set; }
+    public required TeamModel Team { get; set; }
 
     /// <summary>
     /// Team player request status.
@@ -42,6 +43,5 @@ public class TeamPlayerRequestModel : IMapFrom<TeamPlayerRequestDto>
     public required string PlayerComment { get; set; }
 
     public void Mapping(Profile profile) => profile.CreateMap<TeamPlayerRequestDto, TeamPlayerRequestModel>()
-                                                   .ForMember(p => p.Status, d => d.MapFrom(z => z.StatusId))
-                                                   .ForMember(p => p.Team, d => d.MapFrom(z => z.TeamId));
+                                                   .ForMember(p => p.Status, d => d.MapFrom(z => z.StatusId));
 }

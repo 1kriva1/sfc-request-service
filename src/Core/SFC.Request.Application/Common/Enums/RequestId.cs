@@ -27,5 +27,6 @@ public enum RequestId
     CreateTeamPlayerRequest,
     UpdateTeamPlayerRequest,
     GetTeamPlayerRequest,
+    GetAllTeamPlayerRequests,
     GetTeamPlayerRequests
 }

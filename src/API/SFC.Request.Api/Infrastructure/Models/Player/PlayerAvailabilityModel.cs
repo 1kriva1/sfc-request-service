@@ -2,7 +2,7 @@
 using SFC.Request.Application.Common.Dto.Player.General;
 using SFC.Request.Application.Common.Mappings.Interfaces;
 
-namespace SFC.Request.Api.Infrastructure.Models.Player.Result;
+namespace SFC.Request.Api.Infrastructure.Models.Player;
 
 /// <summary>
 /// Player's **availability** model (when player is available to play).

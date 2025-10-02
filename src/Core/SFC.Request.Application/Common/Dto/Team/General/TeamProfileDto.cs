@@ -16,6 +16,6 @@ public class TeamProfileDto : IMapFrom<TeamEntity>
         profile.CreateMap<TeamEntity, TeamProfileDto>()
                .ForMember(p => p.General, d => d.MapFrom(z => z))
                .ForMember(p => p.Financial, d => d.MapFrom(z => z.FinancialProfile))
-               .ForMember(p => p.Inventary, d => d.MapFrom(z => z));
+               .ForMember(p => p.Inventary, d => d.MapFrom(z => z.InventaryProfile));
     }
 }

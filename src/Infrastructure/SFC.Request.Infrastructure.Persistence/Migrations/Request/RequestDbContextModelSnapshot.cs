@@ -699,25 +699,25 @@ namespace SFC.Request.Infrastructure.Persistence.Migrations.Request
                         new
                         {
                             Id = 0,
-                            CreatedDate = new DateTime(2025, 5, 21, 11, 5, 6, 544, DateTimeKind.Utc).AddTicks(1265),
+                            CreatedDate = new DateTime(2025, 10, 2, 9, 17, 45, 282, DateTimeKind.Utc).AddTicks(3932),
                             Title = "Actual"
                         },
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2025, 5, 21, 11, 5, 6, 544, DateTimeKind.Utc).AddTicks(1277),
+                            CreatedDate = new DateTime(2025, 10, 2, 9, 17, 45, 282, DateTimeKind.Utc).AddTicks(3941),
                             Title = "Accepted"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2025, 5, 21, 11, 5, 6, 544, DateTimeKind.Utc).AddTicks(1283),
+                            CreatedDate = new DateTime(2025, 10, 2, 9, 17, 45, 282, DateTimeKind.Utc).AddTicks(3945),
                             Title = "Declined"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2025, 5, 21, 11, 5, 6, 544, DateTimeKind.Utc).AddTicks(1288),
+                            CreatedDate = new DateTime(2025, 10, 2, 9, 17, 45, 282, DateTimeKind.Utc).AddTicks(3948),
                             Title = "Canceled"
                         });
                 });
@@ -900,6 +900,21 @@ namespace SFC.Request.Infrastructure.Persistence.Migrations.Request
                     b.HasKey("Id");
 
                     b.ToTable("GeneralProfiles", "Team");
+                });
+
+            modelBuilder.Entity("SFC.Request.Domain.Entities.Team.General.TeamInventaryProfile", b =>
+                {
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("HasManiches")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("InventaryProfiles", "Team");
                 });
 
             modelBuilder.Entity("SFC.Request.Domain.Entities.Team.General.TeamLogo", b =>
@@ -1310,6 +1325,17 @@ namespace SFC.Request.Infrastructure.Persistence.Migrations.Request
                     b.Navigation("Team");
                 });
 
+            modelBuilder.Entity("SFC.Request.Domain.Entities.Team.General.TeamInventaryProfile", b =>
+                {
+                    b.HasOne("SFC.Request.Domain.Entities.Team.General.Team", "Team")
+                        .WithOne("InventaryProfile")
+                        .HasForeignKey("SFC.Request.Domain.Entities.Team.General.TeamInventaryProfile", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Team");
+                });
+
             modelBuilder.Entity("SFC.Request.Domain.Entities.Team.General.TeamLogo", b =>
                 {
                     b.HasOne("SFC.Request.Domain.Entities.Team.General.Team", "Team")
@@ -1441,6 +1467,9 @@ namespace SFC.Request.Infrastructure.Persistence.Migrations.Request
                         .IsRequired();
 
                     b.Navigation("GeneralProfile")
+                        .IsRequired();
+
+                    b.Navigation("InventaryProfile")
                         .IsRequired();
 
                     b.Navigation("Logo");
