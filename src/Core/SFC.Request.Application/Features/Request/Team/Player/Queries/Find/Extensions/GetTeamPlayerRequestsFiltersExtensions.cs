@@ -17,13 +17,13 @@ public static class GetTeamPlayerRequestsFiltersExtensions
             new()
             {
                 Condition = true,
-                Expression = invite => invite.TeamId == filter!.TeamId
+                Expression = request => request.TeamId == filter!.TeamId
             },
             // request
             new()
             {
                 Condition = filter?.Request?.Statuses?.Any() ?? false,
-                Expression = invite => filter!.Request!.Statuses!.Contains((int)invite.StatusId)
+                Expression = request => filter!.Request!.Statuses!.Contains((int)request.StatusId)
             },
             // player
             new()

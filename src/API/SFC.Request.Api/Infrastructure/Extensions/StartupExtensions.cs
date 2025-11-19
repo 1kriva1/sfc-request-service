@@ -30,6 +30,8 @@ public static class StartupExtensions
             builder.AddSwagger();
         }
 
+        builder.Services.AddHealthChecks();
+
         return builder.Build();
     }
 
@@ -61,6 +63,8 @@ public static class StartupExtensions
         app.UseCustomExceptionHandler();
 
         app.UseHangfireDashboard();
+
+        app.MapHealthChecks("/health");
 
         app.MapControllers();
 

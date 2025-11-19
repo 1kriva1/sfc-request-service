@@ -3,13 +3,44 @@
   "profiles": {
     "SFC.Request": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7766",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "https://+:7766;http://+:7765",
+        "ASPNETCORE_HTTPS_PORT": "7766",
+        "ConnectionStrings__Database": "Server=127.0.0.1,1433;Database=Request;User Id=sfc;Password=Test1234!;TrustServerCertificate=True;",
+        "ConnectionStrings__Hangfire": "Server=127.0.0.1,1433;Database=Hangfire;User Id=sfc;Password=Test1234!;TrustServerCertificate=True;",
+        "ConnectionStrings__RabbitMq": "rabbitmq://localhost:5672",
+        "ConnectionStrings__Redis": "localhost:6379",
+        "Endpoints__Identity__Uri": "https://localhost:7266",
+        "Endpoints__Player__Uri": "https://localhost:7366",
+        "Endpoints__Team__Uri": "https://localhost:7566",
+        "Kestrel__Certificates__Default__Path": "C:/SFC/Configurations/certificates/sfc-request/sfc-request.pfx",
+        "Kestrel__Certificates__Default__Password": "Test1234!"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "https://localhost:7766;http://localhost:7765",
+      "httpPort": 7765,
+      "useSSL": true,
+      "sslPort": 7766,
+      "nativeDebugging": true
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "https://+:7766;http://+:7765",
+        "ASPNETCORE_HTTPS_PORT": "7766"
+      },
+      "mycontainer": "sfc-request",
+      "DockerfileRunArguments": "--network sfc-network --volume C:/SFC/Configurations/certificates/sfc-request/sfc-request.pfx:/https/sfc-request.pfx",
+      "httpPort": 7765,
+      "useSSL": true,
+      "sslPort": 7766,
+      "containerName": "sfc-request"
     }
   }
 }

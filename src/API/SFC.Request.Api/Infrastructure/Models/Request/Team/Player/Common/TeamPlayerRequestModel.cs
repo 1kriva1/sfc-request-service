@@ -23,7 +23,7 @@ public class TeamPlayerRequestModel : IMapFrom<TeamPlayerRequestDto>
     public required PlayerModel Player { get; set; }
 
     /// <summary>
-    /// Team invite related to this team.
+    /// Team request related to this team.
     /// </summary>
     public required TeamModel Team { get; set; }
 
