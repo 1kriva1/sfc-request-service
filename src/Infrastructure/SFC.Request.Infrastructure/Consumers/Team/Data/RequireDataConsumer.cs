@@ -51,7 +51,7 @@ public class RequireDataConsumerDefinition : ConsumerDefinition<RequireDataConsu
             rmq.AutoDelete = true;
             rmq.DiscardFaultedMessages();
 
-            // "sfc.invite.data.require"
+            // "sfc.request.data.require"
             rmq.Bind(Exchange.Name, x => x.AutoDelete = true);
         }
     }

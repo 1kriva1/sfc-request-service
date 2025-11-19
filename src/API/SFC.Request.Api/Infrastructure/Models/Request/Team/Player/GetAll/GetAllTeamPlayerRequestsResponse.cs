@@ -9,7 +9,7 @@ using SFC.Request.Application.Features.Request.Team.Player.Queries.GetAll;
 namespace SFC.Request.Api.Infrastructure.Models.Request.Team.Player.GetAll;
 
 /// <summary>
-/// **Get** all team player invites response.
+/// **Get** all team player requests response.
 /// </summary>
 public class GetAllTeamPlayerRequestsResponse :
     BaseErrorResponse, IMapFrom<GetAllTeamPlayerRequestsViewModel>

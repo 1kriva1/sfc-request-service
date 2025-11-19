@@ -167,7 +167,7 @@ public class TeamPlayerRequestsController : ApiControllerBase
     /// <returns>An ActionResult of type GetTeamPlayerRequestResponse</returns>
     /// <response code="200">Returns player request for team model.</response>
     /// <response code="401">Returns when **failed** authentication.</response>
-    /// <response code="404">Returns when invite **not found**.</response>
+    /// <response code="404">Returns when request **not found**.</response>
     [HttpGet("{requestId}/Teams/{teamId}/Players/{playerId}", Name = "GetTeamPlayerRequest")]
     [Authorize(Policy.General)]
     [ProducesResponseType(StatusCodes.Status200OK)]

@@ -81,7 +81,7 @@
             <returns>An ActionResult of type GetTeamPlayerRequestResponse</returns>
             <response code="200">Returns player request for team model.</response>
             <response code="401">Returns when **failed** authentication.</response>
-            <response code="404">Returns when invite **not found**.</response>
+            <response code="404">Returns when request **not found**.</response>
         </member>
         <member name="M:SFC.Request.Api.Controllers.TeamPlayerRequestsController.GetTeamPlayerRequestsAsync(System.Int64)">
             <summary>
@@ -102,15 +102,6 @@
             <response code="200">Returns list of team player requests with pagination header.</response>
             <response code="400">Returns **validation** errors.</response>
             <response code="401">Returns when **failed** authentication.</response>
-        </member>
-        <member name="M:SFC.Request.Api.Infrastructure.Extensions.GrpcExtensions.MapInternalService(Microsoft.AspNetCore.Builder.GrpcServiceEndpointConventionBuilder,System.String)">
-            <summary>
-            Without RequireHost WebApi and Grpc not working together
-            RequireHost distinguish webapi and grpc by port value
-            Also required Kestrel endpoint configuration in appSettings
-            </summary>
-            <param name="builder"></param>
-            <param name="url"></param>
         </member>
         <member name="T:SFC.Request.Api.Infrastructure.Models.Base.BaseErrorResponse">
             <summary>
@@ -637,7 +628,7 @@
         </member>
         <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Common.TeamPlayerRequestModel.Team">
             <summary>
-            Team invite related to this team.
+            Team request related to this team.
             </summary>
         </member>
         <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Common.TeamPlayerRequestModel.Status">
@@ -722,7 +713,7 @@
         </member>
         <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.GetAll.GetAllTeamPlayerRequestsResponse">
             <summary>
-            **Get** all team player invites response.
+            **Get** all team player requests response.
             </summary>
         </member>
         <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.GetAll.GetAllTeamPlayerRequestsResponse.Requests">

@@ -5,6 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8A244859-F0A6-4CBF-8BA2-21D2AE1F3796}"
 	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
 		Directory.Build.props = Directory.Build.props
@@ -15,6 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{FA4FF039-62AF-4CEC-BCF9-081599262117}"
 	ProjectSection(SolutionItems) = preProject
+		tools\generate-service-certificate.sh = tools\generate-service-certificate.sh
 		tools\post-action.cmd = tools\post-action.cmd
 		tools\update-contracts.ps1 = tools\update-contracts.ps1
 		tools\update-messages.ps1 = tools\update-messages.ps1
@@ -74,6 +76,44 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFC.Request.Api.UnitTests",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFC.Request.Api.IntegrationTests", "tests\SFC.Request.Api.IntegrationTests\SFC.Request.Api.IntegrationTests.csproj", "{CA0B24B3-703C-4616-845F-E2C795CFDF92}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "environments", "environments", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{AC1185FB-DAAC-4563-B3A1-CA0FC4CF1ACE}"
+	ProjectSection(SolutionItems) = preProject
+		environments\api\api.Development.env = environments\api\api.Development.env
+		environments\api\api.Production.env = environments\api\api.Production.env
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mssql", "mssql", "{07F56976-9012-4FC1-BA43-FB577BB8E862}"
+	ProjectSection(SolutionItems) = preProject
+		environments\mssql\mssql.Development.env = environments\mssql\mssql.Development.env
+		environments\mssql\mssql.Production.env = environments\mssql\mssql.Production.env
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rabbitmq", "rabbitmq", "{E90B8F6B-B411-4F90-9093-CBEFCBE56CAB}"
+	ProjectSection(SolutionItems) = preProject
+		environments\rabbitmq\rabbitmq.Development.env = environments\rabbitmq\rabbitmq.Development.env
+		environments\rabbitmq\rabbitmq.Production.env = environments\rabbitmq\rabbitmq.Production.env
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "redis", "redis", "{EBDB0708-29D5-46E4-B74A-C4257A288B82}"
+	ProjectSection(SolutionItems) = preProject
+		environments\redis\redis.Development.env = environments\redis\redis.Development.env
+		environments\redis\redis.Production.env = environments\redis\redis.Production.env
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{18CCC754-8D09-4AAE-AFEB-F2295F837BD4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mssql", "mssql", "{07DDD195-8542-4077-B752-9745C434B22D}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\mssql\create_hangfire_database.sql = scripts\mssql\create_hangfire_database.sql
+		scripts\mssql\create_sfc_login.sql = scripts\mssql\create_sfc_login.sql
+		scripts\mssql\entrypoint.mssql.sh = scripts\mssql\entrypoint.mssql.sh
+		scripts\mssql\init.sql = scripts\mssql\init.sql
+	EndProjectSection
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{81DDED9D-158B-E303-5F62-77A2896D2A5A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -128,6 +168,10 @@ Global
 		{CA0B24B3-703C-4616-845F-E2C795CFDF92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA0B24B3-703C-4616-845F-E2C795CFDF92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA0B24B3-703C-4616-845F-E2C795CFDF92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -154,6 +198,13 @@ Global
 		{C26DD3F8-BE20-4C10-BAAD-2D637F94FFD6} = {886D65F2-844E-40C2-9B52-70643E8C3E7D}
 		{4899BF83-39DF-49AF-B218-EC4A8F5A85D9} = {886D65F2-844E-40C2-9B52-70643E8C3E7D}
 		{CA0B24B3-703C-4616-845F-E2C795CFDF92} = {886D65F2-844E-40C2-9B52-70643E8C3E7D}
+		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {8A244859-F0A6-4CBF-8BA2-21D2AE1F3796}
+		{AC1185FB-DAAC-4563-B3A1-CA0FC4CF1ACE} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{07F56976-9012-4FC1-BA43-FB577BB8E862} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{E90B8F6B-B411-4F90-9093-CBEFCBE56CAB} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{EBDB0708-29D5-46E4-B74A-C4257A288B82} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{18CCC754-8D09-4AAE-AFEB-F2295F837BD4} = {8A244859-F0A6-4CBF-8BA2-21D2AE1F3796}
+		{07DDD195-8542-4077-B752-9745C434B22D} = {18CCC754-8D09-4AAE-AFEB-F2295F837BD4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {25538175-3E79-46DD-ADF7-5E4DD24A0B19}

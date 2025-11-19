@@ -36,7 +36,7 @@ public class CreateTeamPlayerRequestCommandValidator : AbstractValidator<CreateT
            .RequiredProperty(ValidationConstants.DescriptionValueMaxLength, "Comment")
            .OverridePropertyName("Request.Comment");
 
-        RuleFor(invite => invite.Request)
+        RuleFor(request => request.Request)
         // team not found
             .MustAsync(async (request, cancellation) => await _teamRepository.AnyAsync(request.TeamId).ConfigureAwait(true))
             .WithException(new NotFoundException(Localization.TeamNotFound))
@@ -47,9 +47,9 @@ public class CreateTeamPlayerRequestCommandValidator : AbstractValidator<CreateT
             .MustAsync(async (request, cancellation) => !await _teamPlayerRepository
                 .AnyAsync(request.TeamId, request.PlayerId, TeamPlayerStatusEnum.Active).ConfigureAwait(false))
             .WithException(new ConflictException(Localization.PlayerAlreadyInTeam))
-            // invite already exist
-            .MustAsync(async (invite, cancellation) => !await _teamPlayerRequestRepository
-                .AnyAsync(invite.TeamId, invite.PlayerId, RequestStatusEnum.Actual).ConfigureAwait(false))
+            // request already exist
+            .MustAsync(async (request, cancellation) => !await _teamPlayerRequestRepository
+                .AnyAsync(request.TeamId, request.PlayerId, RequestStatusEnum.Actual).ConfigureAwait(false))
             .WithException(new ConflictException(Localization.TeamPlayerRequestActiveAlreadyExist));
     }
 }
