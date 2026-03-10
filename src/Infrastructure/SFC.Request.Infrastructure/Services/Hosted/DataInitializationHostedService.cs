@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 using SFC.Request.Application.Common.Enums;
+using SFC.Request.Application.Interfaces.Metadata;
 using SFC.Request.Application.Interfaces.Request.Data;
 
 namespace SFC.Request.Infrastructure.Services.Hosted;
@@ -29,11 +30,15 @@ public class DataInitializationHostedService(
         await SendRequireDataAsync(scope, cancellationToken).ConfigureAwait(false);
     }
 
-    private static Task PublishDataInitializedAsync(IServiceScope scope, CancellationToken cancellationToken)
+    private static async Task PublishDataInitializedAsync(IServiceScope scope, CancellationToken cancellationToken)
     {
         IRequestDataService requestDataService = scope.ServiceProvider.GetRequiredService<IRequestDataService>();
 
-        return requestDataService.PublishDataInitializedEventAsync(cancellationToken);
+        await requestDataService.PublishDataInitializedEventAsync(cancellationToken).ConfigureAwait(false);
+
+        IMetadataService metadataService = scope.ServiceProvider.GetRequiredService<IMetadataService>();
+
+        await metadataService.CompleteAsync(MetadataServiceEnum.Request, MetadataDomainEnum.Data, MetadataTypeEnum.Initialization).ConfigureAwait(false);
     }
 
     private static Task SendRequireDataAsync(IServiceScope scope, CancellationToken cancellationToken)

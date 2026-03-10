@@ -9,10 +9,6 @@ x-app-secret-volume: &app_secret_volume
   type: bind
   source: ${USERPROFILE}/AppData/Roaming/Microsoft/UserSecrets
   target: /home/app/.microsoft/usersecrets
-x-entrypoint-volume: &entrypoint_volume
-  type: bind
-  source: ${PWD}/entrypoint.sh
-  target: /app/entrypoint.sh
 x-build-args: &build_args
   args:
     BUILD_CONFIGURATION: Debug
@@ -25,17 +21,14 @@ services:
     build:
       dockerfile: src/API/SFC.Request.Api/Dockerfile.Development
       <<: *build_args
-    entrypoint: ["/bin/sh", "entrypoint.sh"]
-    command: ["src/API/SFC.Request.Api/SFC.Request.Api.csproj"]
     env_file:
       - environments/api/api.Development.env
-    volumes: 
+    volumes:      
       - *root_secret_volume
       - *app_secret_volume
-      - *entrypoint_volume
       - type: bind
         source: ${PWD}
-        target: /app     
+        target: /app    
   sfc-data:
     extends:
       file: compose.Common.yaml
@@ -44,19 +37,16 @@ services:
     build:
       dockerfile: ../sfc-data-service/src/API/SFC.Data.Api/Dockerfile.Development
       <<: *build_args
-    entrypoint: ["/bin/sh", "entrypoint.sh"]
-    command: ["src/API/SFC.Data.Api/SFC.Data.Api.csproj"]
     env_file:
       - ../sfc-data-service/environments/api/api.Development.env
     healthcheck:
-          start_period: 600s
+      start_period: 660s
     volumes:
       - *root_secret_volume
       - *app_secret_volume
-      - *entrypoint_volume
-      - type: bind
-        source: ../sfc-data-service
-        target: /app
+      -  type: bind
+         source: ../sfc-data-service
+         target: /app
   sfc-identity:
     extends:
       file: compose.Common.yaml
@@ -65,16 +55,13 @@ services:
     build:
       dockerfile: ../sfc-identity-service/src/API/SFC.Identity.Api/Dockerfile.Development
       <<: *build_args
-    entrypoint: ["/bin/sh", "entrypoint.sh"]
-    command: ["src/API/SFC.Identity.Api/SFC.Identity.Api.csproj"]
     env_file:
       - ../sfc-identity-service/environments/api/api.Development.env
     healthcheck:
-          start_period: 600s
+      start_period: 660s
     volumes:
       - *root_secret_volume
       - *app_secret_volume
-      - *entrypoint_volume
       - type: bind
         source: ../sfc-identity-service
         target: /app
@@ -88,19 +75,16 @@ services:
     build:
       dockerfile: ../sfc-player-service/src/API/SFC.Player.Api/Dockerfile.Development
       <<: *build_args
-    entrypoint: ["/bin/sh", "entrypoint.sh"]
-    command: ["src/API/SFC.Player.Api/SFC.Player.Api.csproj"]
     env_file:
       - ../sfc-player-service/environments/api/api.Development.env
     healthcheck:
-          start_period: 600s
+      start_period: 660s
     volumes:
       - *root_secret_volume
       - *app_secret_volume
-      - *entrypoint_volume
-      - type: bind
-        source: ../sfc-player-service
-        target: /app
+      -  type: bind
+         source: ../sfc-player-service
+         target: /app
   sfc-team:
     extends:
       file: compose.Common.yaml
@@ -109,16 +93,13 @@ services:
     build:
       dockerfile: ../sfc-team-service/src/API/SFC.Team.Api/Dockerfile.Development
       <<: *build_args
-    entrypoint: ["/bin/sh", "entrypoint.sh"]
-    command: ["src/API/SFC.Team.Api/SFC.Team.Api.csproj"]
     env_file:
       - ../sfc-team-service/environments/api/api.Development.env
     healthcheck:
-          start_period: 600s
+      start_period: 660s
     volumes:
       - *root_secret_volume
       - *app_secret_volume
-      - *entrypoint_volume
-      - type: bind
-        source: ../sfc-team-service
-        target: /app
+      -  type: bind
+         source: ../sfc-team-service
+         target: /app

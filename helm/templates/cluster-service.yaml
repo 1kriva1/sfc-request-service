@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sfc-request
+  namespace: sfc
+  labels:
+    app.kubernetes.io/name: sfc-request
+    app.kubernetes.io/component: network
+    app.kubernetes.io/part-of: sfc
+    app.kubernetes.io/instance: production
+    app.kubernetes.io/managed-by: kubectl
+  annotations:
+    owner: "krivorukandrey@gmail.com"
+    purpose: "Internal ClusterIP service for Request component in SFC application"
+spec:
+  selector:
+    app.kubernetes.io/name: sfc-request
+  type: ClusterIP
+  ports:
+    - name: sfc-request-cluster-service-http-port
+      protocol: TCP
+      port: 7765
+      targetPort: 7765
+    - name: sfc-request-cluster-service-https-port
+      protocol: TCP
+      port: 7766
+      targetPort: 7766
+  internalTrafficPolicy: Cluster
