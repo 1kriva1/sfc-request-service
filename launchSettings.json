@@ -11,7 +11,8 @@
         "sfc-player": "StartWithoutDebugging",
         "sfc-rabbitmq": "StartWithoutDebugging",
         "sfc-redis": "StartWithoutDebugging",
-        "sfc-team": "StartWithoutDebugging"
+        "sfc-team": "StartWithoutDebugging",
+        "sfc-game": "StartWithoutDebugging"
       }
     }
   }

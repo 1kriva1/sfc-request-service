@@ -1,4 +1,4 @@
-﻿using SFC.Request.Application.Common.Dto.Player.Filters;
+﻿using SFC.Request.Application.Common.Dto.Player.General.Filters;
 using SFC.Request.Application.Common.Mappings.Interfaces;
 
 namespace SFC.Request.Api.Infrastructure.Models.Player.Find.Filters;

@@ -7,5 +7,7 @@ public interface IRequestDataService
 
     Task<GetTeamDataModel> GetTeamDataAsync();
 
+    Task<GetGameDataModel> GetGameDataAsync();
+
     Task PublishDataInitializedEventAsync(CancellationToken cancellationToken);
 }

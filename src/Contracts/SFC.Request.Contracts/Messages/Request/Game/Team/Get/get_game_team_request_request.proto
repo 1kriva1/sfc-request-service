@@ -1,0 +1,12 @@
+﻿syntax = "proto3";
+
+package sfc_request;
+
+option csharp_namespace = "SFC.Request.Contracts.Messages.Request.Game.Team.Get";
+
+message GetGameTeamRequestRequest
+{
+    int64 id = 1;
+    int64 game_id = 2;
+    int64 team_id = 3;
+}

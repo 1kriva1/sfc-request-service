@@ -46,6 +46,9 @@ public static class CacheExtensions
             case CacheInstance.Team:
                 services.AddCacheInstance<RedisTeamCache>(CacheInstance.Team, configuration);
                 break;
+            case CacheInstance.Game:
+                services.AddCacheInstance<RedisGameCache>(CacheInstance.Game, configuration);
+                break;
         }
     }
 

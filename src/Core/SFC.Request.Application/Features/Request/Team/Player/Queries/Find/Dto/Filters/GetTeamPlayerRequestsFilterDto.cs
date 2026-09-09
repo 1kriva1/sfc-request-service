@@ -1,4 +1,4 @@
-﻿using SFC.Request.Application.Common.Dto.Player.Filters;
+﻿using SFC.Request.Application.Common.Dto.Player.General.Filters;
 
 namespace SFC.Request.Application.Features.Request.Team.Player.Queries.Find.Dto.Filters;
 public class GetTeamPlayerRequestsFilterDto

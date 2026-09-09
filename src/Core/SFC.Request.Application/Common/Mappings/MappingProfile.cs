@@ -6,6 +6,7 @@ using SFC.Request.Application.Features.Common.Models.Find.Paging;
 using SFC.Request.Application.Features.Request.Data.Queries.Common.Dto;
 using SFC.Request.Domain.Common;
 using SFC.Request.Domain.Entities.Data;
+using SFC.Request.Domain.Entities.Game.General;
 using SFC.Request.Domain.Entities.Identity;
 using SFC.Request.Domain.Entities.Player;
 using SFC.Request.Domain.Entities.Team.General;
@@ -50,6 +51,11 @@ public class MappingProfile : BaseMappingProfile
         CreateMap<string, TeamTag>()
             .ConvertUsing(tag => new TeamTag { Value = tag });
         CreateMap<TeamTag, string>()
+            .ConvertUsing(tag => tag.Value);
+
+        CreateMap<string, GameTag>()
+            .ConvertUsing(tag => new GameTag { Value = tag });
+        CreateMap<GameTag, string>()
             .ConvertUsing(tag => tag.Value);
 
         #endregion Simple types

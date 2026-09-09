@@ -34,6 +34,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="SFC.Game.Contracts" Version="0.0.2" />
+    <PackageReference Include="SFC.Game.Messages" Version="0.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Contracts\SFC.Request.Contracts\SFC.Request.Contracts.csproj" />
     <ProjectReference Include="..\..\Contracts\SFC.Request.Messages\SFC.Request.Messages.csproj" />
     <ProjectReference Include="..\..\Core\SFC.Request.Application\SFC.Request.Application.csproj" />

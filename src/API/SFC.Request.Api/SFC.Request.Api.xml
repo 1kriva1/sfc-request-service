@@ -4,6 +4,267 @@
         <name>SFC.Request.Api</name>
     </assembly>
     <members>
+        <member name="T:SFC.Request.Api.Controllers.GamePlayerRequestController">
+            <summary>
+            Game player Request controller:
+            - create Request
+            - cancel/accept/refuse Request
+            - get/find Requests
+            </summary>
+        </member>
+        <member name="M:SFC.Request.Api.Controllers.GamePlayerRequestController.GamePlayerRequestExistAsync(System.Int64,System.Int64,System.Nullable{System.Int32})">
+            <summary>
+            Check if Game player Request exist.
+            </summary>
+            <param name="gameId">Game Id.</param>
+            <param name="playerId">Player Id.</param>
+            <param name="status">Game player status Id.</param>
+            <returns>An ActionResult of type GamePlayerRequestExistResponse</returns>
+            <response code="200">Returns Game player Request existence check result.</response>
+            <response code="401">Returns when **failed** authentication.</response>
+            <response code="403">Returns when **failed** authorization.</response>
+        </member>
+        <member name="M:SFC.Request.Api.Controllers.GamePlayerRequestController.CreateGamePlayerRequestAsync(System.Int64,System.Int64,SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Create.CreateGamePlayerRequestRequest)">
+            <summary>
+            Create new Game Request for player.
+            </summary>
+            <param name="gameId">Game Id.</param>
+            <param name="playerId">Player Id.</param>
+            <param name="request">Create Game Request for player request.</param>
+            <returns>An ActionResult of type CreateGamePlayerRequestResponse</returns>
+            <response code="201">Returns **new** created Game player Request.</response>
+            <response code="400">Returns **validation** errors.</response>
+            <response code="401">Returns when **failed** authentication.</response>
+            <response code="403">Returns when **failed** authorization.</response>
+            <response code="409">Returns when **flow validation** errors.</response>
+        </member>
+        <member name="M:SFC.Request.Api.Controllers.GamePlayerRequestController.CreatesGamePlayerRequestAsync(System.Int64,SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Creates.CreatesGamePlayerRequestRequest)">
+            <summary>
+            Create new Game Requests for players.
+            </summary>
+            <param name="gameId">Game Id.</param>
+            <param name="request">Create Game Requests for players request.</param>
+            <returns>An ActionResult of type CreateGamePlayerRequestsResponse</returns>
+            <response code="200">Returns **new** created Game player Requests.</response>
+            <response code="400">Returns **validation** errors.</response>
+            <response code="401">Returns when **failed** authentication.</response>
+            <response code="403">Returns when **failed** authorization.</response>
+            <response code="409">Returns when **flow validation** errors.</response>
+        </member>
+        <member name="M:SFC.Request.Api.Controllers.GamePlayerRequestController.CancelGamePlayerRequestAsync(System.Int64,System.Int64,System.Int64)">
+            <summary>
+            Cancel Game Request for player by Game.
+            </summary>
+            <param name="gameId">Game Id.</param>
+            <param name="playerId">Player Id.</param>
+            <param name="requestId">Game player Request Id.</param>
+            <returns>No content</returns>
+            <response code="204">Returns no content if Request **successfully** canceled.</response>
+            <response code="401">Returns when **failed** authentication.</response>
+            <response code="403">Returns when **failed** authorization.</response>
+            <response code="404">Returns when Request **not found**.</response>
+            <response code="409">Returns when **flow validation** errors.</response>
+        </member>
+        <member name="M:SFC.Request.Api.Controllers.GamePlayerRequestController.DeclineGamePlayerRequestAsync(System.Int64,System.Int64,System.Int64,SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Update.Decline.DeclineGamePlayerRequestRequest)">
+            <summary>
+            Decline Game Request for player by player.
+            </summary>
+            <param name="gameId">Game Id.</param>
+            <param name="playerId">Player Id.</param>
+            <param name="requestId">Game player Request Id.</param>
+            <param name="request">Decline Game Request for player request.</param>
+            <returns>No content</returns>
+            <response code="204">Returns no content if Request **successfully** declined.</response>
+            <response code="400">Returns **validation** errors.</response>
+            <response code="401">Returns when **failed** authentication.</response>
+            <response code="403">Returns when **failed** authorization.</response>
+            <response code="404">Returns when Request **not found**.</response>
+            <response code="409">Returns when **flow validation** errors.</response>
+        </member>
+        <member name="M:SFC.Request.Api.Controllers.GamePlayerRequestController.AcceptGamePlayerRequestAsync(System.Int64,System.Int64,System.Int64)">
+            <summary>
+            Accept Game Request for player by player.
+            </summary>
+            <param name="gameId">Game Id.</param>
+            <param name="playerId">Player Id.</param>
+            <param name="requestId">Game player Request Id.</param>
+            <returns>No content</returns>
+            <response code="204">Returns no content if Request **successfully** accepted.</response>
+            <response code="401">Returns when **failed** authentication.</response>
+            <response code="403">Returns when **failed** authorization.</response>
+            <response code="404">Returns when Request **not found**.</response>
+            <response code="409">Returns when **flow validation** errors.</response>
+        </member>
+        <member name="M:SFC.Request.Api.Controllers.GamePlayerRequestController.GetGamePlayerRequestAsync(System.Int64,System.Int64,System.Int64)">
+            <summary>
+            Return Game Request for player.
+            </summary>
+            <param name="gameId">Game Id.</param>
+            <param name="playerId">Player Id.</param>
+            <param name="requestId">Game player Request Id.</param>
+            <returns>An ActionResult of type GetGamePlayerRequestResponse</returns>
+            <response code="200">Returns Game Request for player model.</response>
+            <response code="401">Returns when **failed** authentication.</response>
+            <response code="404">Returns when Request **not found**.</response>
+        </member>
+        <member name="M:SFC.Request.Api.Controllers.GamePlayerRequestController.GetGamePlayerRequestsAsync(System.Int64)">
+            <summary>
+            Return Game player Request models by Game Id.
+            </summary>
+            <param name="gameId">Game unique identifier.</param>
+            <returns>An ActionResult of type GetAllGamePlayerRequestsResponse</returns>
+            <response code="200">Returns Game player Request models.</response>
+            <response code="401">Returns when **failed** authentication.</response>
+        </member>
+        <member name="M:SFC.Request.Api.Controllers.GamePlayerRequestController.GetGamePlayerRequestsAsync(System.Int64,SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Find.GetGamePlayerRequestsRequest)">
+            <summary>
+            Return list of Game player Requests.
+            </summary>
+            <param name="gameId">Game unique identifier.</param>
+            <param name="request">Get Game player Requests request.</param>
+            <returns>An ActionResult of type GetGamePlayerRequestsResponse</returns>
+            <response code="200">Returns list of Game player Requests with pagination header.</response>
+            <response code="400">Returns **validation** errors.</response>
+            <response code="401">Returns when **failed** authentication.</response>
+        </member>
+        <member name="T:SFC.Request.Api.Controllers.GameTeamRequestController">
+            <summary>
+            Game Team Request controller:
+            - create Request
+            - cancel/accept/refuse Request
+            - get/find Requests
+            </summary>
+        </member>
+        <member name="M:SFC.Request.Api.Controllers.GameTeamRequestController.GameTeamRequestExistAsync(System.Int64,System.Int64,System.Nullable{System.Int32})">
+            <summary>
+            Check if Game Team Request exist.
+            </summary>
+            <param name="gameId">Game Id.</param>
+            <param name="teamId">Team Id.</param>
+            <param name="status">Game Team status Id.</param>
+            <returns>An ActionResult of type GameTeamRequestExistResponse</returns>
+            <response code="200">Returns Game Team Request existence check result.</response>
+            <response code="401">Returns when **failed** authentication.</response>
+            <response code="403">Returns when **failed** authorization.</response>
+        </member>
+        <member name="M:SFC.Request.Api.Controllers.GameTeamRequestController.CreateGameTeamRequestAsync(System.Int64,System.Int64,SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Create.CreateGameTeamRequestRequest)">
+            <summary>
+            Create new Game Request for Team.
+            </summary>
+            <param name="gameId">Game Id.</param>
+            <param name="teamId">Team Id.</param>
+            <param name="request">Create Game Request for Team request.</param>
+            <returns>An ActionResult of type CreateGameTeamRequestResponse</returns>
+            <response code="201">Returns **new** created Game Team Request.</response>
+            <response code="400">Returns **validation** errors.</response>
+            <response code="401">Returns when **failed** authentication.</response>
+            <response code="403">Returns when **failed** authorization.</response>
+            <response code="409">Returns when **flow validation** errors.</response>
+        </member>
+        <member name="M:SFC.Request.Api.Controllers.GameTeamRequestController.CreatesGameTeamRequestAsync(System.Int64,SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Creates.CreatesGameTeamRequestRequest)">
+            <summary>
+            Create new Game Requests for Teams.
+            </summary>
+            <param name="gameId">Game Id.</param>
+            <param name="request">Create Game Requests for Teams request.</param>
+            <returns>An ActionResult of type CreateGameTeamRequestsResponse</returns>
+            <response code="200">Returns **new** created Game Team Requests.</response>
+            <response code="400">Returns **validation** errors.</response>
+            <response code="401">Returns when **failed** authentication.</response>
+            <response code="403">Returns when **failed** authorization.</response>
+            <response code="409">Returns when **flow validation** errors.</response>
+        </member>
+        <member name="M:SFC.Request.Api.Controllers.GameTeamRequestController.UpdateGameTeamRequestAsync(System.Int64,System.Int64,System.Int64,SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Update.General.UpdateGameTeamRequestRequest)">
+            <summary>
+            Update Game Request for Team by Game.
+            </summary>
+            <param name="gameId">Game Id.</param>
+            <param name="teamId">Team Id.</param>
+            <param name="requestId">Game Team Request Id.</param>
+            <param name="request">Update Game Request for Team request.</param>
+            <returns>No content</returns>
+            <response code="204">Returns no content if Request **successfully** updated.</response>
+            <response code="401">Returns when **failed** authentication.</response>
+            <response code="403">Returns when **failed** authorization.</response>
+            <response code="404">Returns when Request **not found**.</response>
+            <response code="409">Returns when **flow validation** errors.</response>
+        </member>
+        <member name="M:SFC.Request.Api.Controllers.GameTeamRequestController.CancelGameTeamRequestAsync(System.Int64,System.Int64,System.Int64)">
+            <summary>
+            Cancel Game Request for Team by Game.
+            </summary>
+            <param name="gameId">Game Id.</param>
+            <param name="teamId">Team Id.</param>
+            <param name="requestId">Game Team Request Id.</param>
+            <returns>No content</returns>
+            <response code="204">Returns no content if Request **successfully** canceled.</response>
+            <response code="401">Returns when **failed** authentication.</response>
+            <response code="403">Returns when **failed** authorization.</response>
+            <response code="404">Returns when Request **not found**.</response>
+            <response code="409">Returns when **flow validation** errors.</response>
+        </member>
+        <member name="M:SFC.Request.Api.Controllers.GameTeamRequestController.DeclineGameTeamRequestAsync(System.Int64,System.Int64,System.Int64,SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Update.Decline.DeclineGameTeamRequestRequest)">
+            <summary>
+            Decline Game Request for Team by Team.
+            </summary>
+            <param name="gameId">Game Id.</param>
+            <param name="teamId">Team Id.</param>
+            <param name="requestId">Game Team Request Id.</param>
+            <param name="request">Decline Game Request for Team request.</param>
+            <returns>No content</returns>
+            <response code="204">Returns no content if Request **successfully** declined.</response>
+            <response code="400">Returns **validation** errors.</response>
+            <response code="401">Returns when **failed** authentication.</response>
+            <response code="403">Returns when **failed** authorization.</response>
+            <response code="404">Returns when Request **not found**.</response>
+            <response code="409">Returns when **flow validation** errors.</response>
+        </member>
+        <member name="M:SFC.Request.Api.Controllers.GameTeamRequestController.AcceptGameTeamRequestAsync(System.Int64,System.Int64,System.Int64)">
+            <summary>
+            Accept Game Request for Team by Team.
+            </summary>
+            <param name="gameId">Game Id.</param>
+            <param name="teamId">Team Id.</param>
+            <param name="requestId">Game Team Request Id.</param>
+            <returns>No content</returns>
+            <response code="204">Returns no content if Request **successfully** accepted.</response>
+            <response code="401">Returns when **failed** authentication.</response>
+            <response code="403">Returns when **failed** authorization.</response>
+            <response code="404">Returns when Request **not found**.</response>
+            <response code="409">Returns when **flow validation** errors.</response>
+        </member>
+        <member name="M:SFC.Request.Api.Controllers.GameTeamRequestController.GetGameTeamRequestAsync(System.Int64,System.Int64,System.Int64)">
+            <summary>
+            Return Game Request for Team.
+            </summary>
+            <param name="gameId">Game Id.</param>
+            <param name="teamId">Team Id.</param>
+            <param name="requestId">Game Team Request Id.</param>
+            <returns>An ActionResult of type GetGameTeamRequestResponse</returns>
+            <response code="200">Returns Game Request for Team model.</response>
+            <response code="401">Returns when **failed** authentication.</response>
+            <response code="404">Returns when Request **not found**.</response>
+        </member>
+        <member name="M:SFC.Request.Api.Controllers.GameTeamRequestController.GetsGameTeamRequestAsync(System.Int64)">
+            <summary>
+            Return Game Team Request models by Game Id.
+            </summary>
+            <param name="gameId">Game unique identifier.</param>
+            <returns>An ActionResult of type GetAllGameTeamRequestsResponse</returns>
+            <response code="200">Returns Game Team Request models.</response>
+            <response code="401">Returns when **failed** authentication.</response>
+        </member>
+        <member name="M:SFC.Request.Api.Controllers.GameTeamRequestController.GetGameTeamRequestsAsync(System.Int64,SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Find.GetGameTeamRequestsRequest)">
+            <summary>
+            Return list of Game Team Requests.
+            </summary>
+            <param name="gameId">Game unique identifier.</param>
+            <param name="request">Get Game Team Requests request.</param>
+            <returns>An ActionResult of type GetGameTeamRequestsResponse</returns>
+            <response code="200">Returns list of Game Team Requests with pagination header.</response>
+            <response code="400">Returns **validation** errors.</response>
+            <response code="401">Returns when **failed** authentication.</response>
+        </member>
         <member name="M:SFC.Request.Api.Controllers.RequestDataController.GetAllAsync">
             <summary>
             Return all available request data types.
@@ -189,6 +450,141 @@
         <member name="P:SFC.Request.Api.Infrastructure.Models.Common.SortingModel.Direction">
             <summary>
             Sorting **direction** (ascending or descending).
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Game.General.GameAvailabilityModel">
+            <summary>
+            Game's **availability** model (when game is available to play).
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Game.General.GameAvailabilityModel.Date">
+            <summary>
+            Date.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Game.General.GameFinancialProfileModel">
+            <summary>
+            Game's **financial** profile model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Game.General.GameFinancialProfileModel.FreeGame">
+            <summary>
+            Game play only on free field and without any extra expansions.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Game.General.GameFinancialProfileModel.PayAmount">
+            <summary>
+            How many need to pay for game.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Game.General.GameGeneralProfileModel">
+            <summary>
+            Game's **general** profile model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Game.General.GameGeneralProfileModel.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Game.General.GameGeneralProfileModel.Description">
+            <summary>
+            A few words about game.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Game.General.GameGeneralProfileModel.Location">
+            <summary>
+            Location of main game field.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Game.General.GameGeneralProfileModel.Availability">
+            <summary>
+            Game's **availability** to play.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Game.General.GameGeneralProfileModel.Tags">
+            <summary>
+            Game's **tags**.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Game.General.GameInventaryProfileModel">
+            <summary>
+            Game's **inventary** profile model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Game.General.GameInventaryProfileModel.ShirtsRequired">
+            <summary>
+            Is it required to have shirts for play.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Game.General.GameInventaryProfileModel.ShirtsCount">
+            <summary>
+            How many shirts required for game.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Game.General.GameModel">
+            <summary>
+            Game model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Game.General.GameModel.Id">
+            <summary>
+            Unique identifier.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Game.General.GameModel.Status">
+            <summary>
+            Game status.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Game.General.GameModel.Profile">
+            <summary>
+            Game's profile model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Game.General.GameModel.GamePlayers">
+            <summary>
+            Game's players model.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Game.General.GameProfileModel">
+            <summary>
+            Game **profile** model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Game.General.GameProfileModel.General">
+            <summary>
+            General profile.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Game.General.GameProfileModel.Financial">
+            <summary>
+            Financial profile.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Game.General.GameProfileModel.Inventary">
+            <summary>
+            Inventary profile.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Game.Player.GamePlayerModel">
+            <summary>
+            Game Player model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Game.Player.GamePlayerModel.Id">
+            <summary>
+            Unique identifier.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Game.Player.GamePlayerModel.Status">
+            <summary>
+            Game Player status.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Game.Player.GamePlayerModel.Player">
+            <summary>
+            Game Player related to this player.
             </summary>
         </member>
         <member name="T:SFC.Request.Api.Infrastructure.Models.Pagination.PageLinksModel">
@@ -611,6 +1007,416 @@
             Request statuses.
             </summary>
         </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Common.GamePlayerRequestModel">
+            <summary>
+            Game player Request model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Common.GamePlayerRequestModel.Id">
+            <summary>
+            Unique identifier.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Common.GamePlayerRequestModel.Player">
+            <summary>
+            Game Request related to this player.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Common.GamePlayerRequestModel.Game">
+            <summary>
+            Game Request related to this Game.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Common.GamePlayerRequestModel.Status">
+            <summary>
+            Game player Request status.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Common.GamePlayerRequestModel.GameComment">
+            <summary>
+            Comment from Game to player for invitation.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Common.GamePlayerRequestModel.PlayerComment">
+            <summary>
+            Comment from player to Game if he/she refuse Request.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Create.CreateGamePlayerRequestModel">
+            <summary>
+            **Create** Game player Request model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Create.CreateGamePlayerRequestModel.Comment">
+            <summary>
+            Comment from Game to player for invitation.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Create.CreateGamePlayerRequestRequest">
+            <summary>
+            **Create** Game player Request request.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Create.CreateGamePlayerRequestRequest.Request">
+            <summary>
+            Game player Request model.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Create.CreateGamePlayerRequestResponse">
+            <summary>
+            **Create** Game player Request response.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Create.CreateGamePlayerRequestResponse.Request">
+            <summary>
+            Game player Request model.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Creates.CreatesGamePlayerRequestModel">
+            <summary>
+            **Creates** Game player Request model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Creates.CreatesGamePlayerRequestModel.Player">
+            <summary>
+            Player for which Game send Request.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Creates.CreatesGamePlayerRequestModel.Comment">
+            <summary>
+            Comment from Game to player for invitation.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Creates.CreatesGamePlayerRequestRequest">
+            <summary>
+            **Creates** Game player Requests request.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Creates.CreatesGamePlayerRequestRequest.Requests">
+            <summary>
+            Game player Request model.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Creates.CreatesGamePlayerRequestResponse">
+            <summary>
+            **Create** Game player Request response.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Creates.CreatesGamePlayerRequestResponse.Requests">
+            <summary>
+            Game player Request models.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Exist.GamePlayerRequestExistResponse">
+            <summary>
+            Described the result of check if Game player Request **exist**.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Exist.GamePlayerRequestExistResponse.Exist">
+            <summary>
+            Determined if Game player Request exist.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Find.Filters.GetGamePlayerRequestsFilterModel">
+            <summary>
+            Get Game player Requests filter model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Find.Filters.GetGamePlayerRequestsFilterModel.Request">
+            <summary>
+            Request filter model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Find.Filters.GetGamePlayerRequestsFilterModel.Player">
+            <summary>
+            Player filter model.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Find.Filters.GetGamePlayerRequestsRequestFilterModel">
+            <summary>
+            Get Game player Requests for Request filter model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Find.Filters.GetGamePlayerRequestsRequestFilterModel.Statuses">
+            <summary>
+            Statuses of Request.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Find.GetGamePlayerRequestsRequest">
+            <summary>
+            **Get** Game player Requests request.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Find.GetGamePlayerRequestsResponse">
+            <summary>
+            **Get** Game player Requests response.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Get.GetGamePlayerRequestResponse">
+            <summary>
+            **Get** Game player Request response.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Get.GetGamePlayerRequestResponse.Request">
+            <summary>
+            Game player Request model.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Gets.GetsGamePlayerRequestResponse">
+            <summary>
+            **Get** all Game player Requests response.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Gets.GetsGamePlayerRequestResponse.Requests">
+            <summary>
+            Game player Request models.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Update.Decline.DeclineGamePlayerRequestModel">
+            <summary>
+            **Refuse** Game player Request model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Update.Decline.DeclineGamePlayerRequestModel.Comment">
+            <summary>
+            Comment from player to explain why he/she is refuse Game Request.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Update.Decline.DeclineGamePlayerRequestRequest">
+            <summary>
+            **Refuse** Game player Request request.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Update.Decline.DeclineGamePlayerRequestRequest.Request">
+            <summary>
+            Refuse Game player Request model.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Update.General.UpdateGamePlayerRequestModel">
+            <summary>
+            **Update** Game player Request model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Update.General.UpdateGamePlayerRequestModel.Comment">
+            <summary>
+            Comment from Game to player for invitation.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Update.General.UpdateGamePlayerRequestRequest">
+            <summary>
+            **Update** Game player Request request.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Player.Update.General.UpdateGamePlayerRequestRequest.Request">
+            <summary>
+            Update Game player Request model.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Common.GameTeamRequestModel">
+            <summary>
+            Game Team Request model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Common.GameTeamRequestModel.Id">
+            <summary>
+            Unique identifier.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Common.GameTeamRequestModel.Team">
+            <summary>
+            Game Request related to this Team.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Common.GameTeamRequestModel.Game">
+            <summary>
+            Game Request related to this Game.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Common.GameTeamRequestModel.Status">
+            <summary>
+            Game Team Request status.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Common.GameTeamRequestModel.GameComment">
+            <summary>
+            Comment from Game to Team for invitation.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Common.GameTeamRequestModel.TeamComment">
+            <summary>
+            Comment from Team to Game if he/she refuse Request.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Create.CreateGameTeamRequestModel">
+            <summary>
+            **Create** Game Team Request model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Create.CreateGameTeamRequestModel.Comment">
+            <summary>
+            Comment from Game to Team for invitation.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Create.CreateGameTeamRequestRequest">
+            <summary>
+            **Create** Game Team Request request.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Create.CreateGameTeamRequestRequest.Request">
+            <summary>
+            Game Team Request model.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Create.CreateGameTeamRequestResponse">
+            <summary>
+            **Create** Game Team Request response.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Create.CreateGameTeamRequestResponse.Request">
+            <summary>
+            Game Team Request model.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Creates.CreatesGameTeamRequestModel">
+            <summary>
+            **Creates** Game Team Request model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Creates.CreatesGameTeamRequestModel.Team">
+            <summary>
+            Team for which Game send Request.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Creates.CreatesGameTeamRequestModel.Comment">
+            <summary>
+            Comment from Game to Team for invitation.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Creates.CreatesGameTeamRequestRequest">
+            <summary>
+            **Creates** Game Team Requests request.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Creates.CreatesGameTeamRequestRequest.Requests">
+            <summary>
+            Game Team Request model.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Creates.CreatesGameTeamRequestResponse">
+            <summary>
+            **Create** Game Team Request response.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Creates.CreatesGameTeamRequestResponse.Requests">
+            <summary>
+            Game Team Request models.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Exist.GameTeamRequestExistResponse">
+            <summary>
+            Described the result of check if Game Team Request **exist**.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Exist.GameTeamRequestExistResponse.Exist">
+            <summary>
+            Determined if Game Team Request exist.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Find.Filters.GetGameTeamRequestsFilterModel">
+            <summary>
+            Get Game Team Requests filter model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Find.Filters.GetGameTeamRequestsFilterModel.Request">
+            <summary>
+            Request filter model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Find.Filters.GetGameTeamRequestsFilterModel.Team">
+            <summary>
+            Team filter model.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Find.Filters.GetGameTeamRequestsRequestFilterModel">
+            <summary>
+            Get Game Team Requests for Request filter model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Find.Filters.GetGameTeamRequestsRequestFilterModel.Statuses">
+            <summary>
+            Statuses of Request.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Find.GetGameTeamRequestsRequest">
+            <summary>
+            **Get** Game Team Requests request.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Find.GetGameTeamRequestsResponse">
+            <summary>
+            **Get** Game Team Requests response.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Get.GetGameTeamRequestResponse">
+            <summary>
+            **Get** Game Team Request response.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Get.GetGameTeamRequestResponse.Request">
+            <summary>
+            Game Team Request model.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Gets.GetsGameTeamRequestResponse">
+            <summary>
+            **Get** all Game Team Requests response.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Gets.GetsGameTeamRequestResponse.Requests">
+            <summary>
+            Game Team Request models.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Update.Decline.DeclineGameTeamRequestModel">
+            <summary>
+            **Refuse** Game Team Request model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Update.Decline.DeclineGameTeamRequestModel.Comment">
+            <summary>
+            Comment from Team to explain why he/she is refuse Game Request.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Update.Decline.DeclineGameTeamRequestRequest">
+            <summary>
+            **Refuse** Game Team Request request.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Update.Decline.DeclineGameTeamRequestRequest.Request">
+            <summary>
+            Refuse Game Team Request model.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Update.General.UpdateGameTeamRequestModel">
+            <summary>
+            **Update** Game Team Request model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Update.General.UpdateGameTeamRequestModel.Comment">
+            <summary>
+            Comment from Game to Team for invitation.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Update.General.UpdateGameTeamRequestRequest">
+            <summary>
+            **Update** Game Team Request request.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Game.Team.Update.General.UpdateGameTeamRequestRequest.Request">
+            <summary>
+            Update Game Team Request model.
+            </summary>
+        </member>
         <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Common.TeamPlayerRequestModel">
             <summary>
             Request model.
@@ -711,16 +1517,6 @@
             **Get** team player requests response.
             </summary>
         </member>
-        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.GetAll.GetAllTeamPlayerRequestsResponse">
-            <summary>
-            **Get** all team player requests response.
-            </summary>
-        </member>
-        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.GetAll.GetAllTeamPlayerRequestsResponse.Requests">
-            <summary>
-            Team player request models.
-            </summary>
-        </member>
         <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Get.GetTeamPlayerRequestResponse">
             <summary>
             **Get** request response.
@@ -729,6 +1525,16 @@
         <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Get.GetTeamPlayerRequestResponse.Request">
             <summary>
             Team player request model.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.GetAll.GetAllTeamPlayerRequestsResponse">
+            <summary>
+            **Get** all team player requests response.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.GetAll.GetAllTeamPlayerRequestsResponse.Requests">
+            <summary>
+            Team player request models.
             </summary>
         </member>
         <member name="T:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Update.Decline.DeclineTeamPlayerRequestModel">
@@ -749,6 +1555,106 @@
         <member name="P:SFC.Request.Api.Infrastructure.Models.Request.Team.Player.Update.Decline.DeclineTeamPlayerRequestRequest.Request">
             <summary>
             Decline team player request model.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Team.General.Filters.TeamAvailabilityLimitModel">
+            <summary>
+            Team **availability filter** model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.Filters.TeamAvailabilityLimitModel.Days">
+            <summary>
+            Days of week.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Team.General.Filters.TeamFilterModel">
+            <summary>
+            Team filter model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.Filters.TeamFilterModel.Statuses">
+            <summary>
+            Statuses of team.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.Filters.TeamFilterModel.Profile">
+            <summary>
+            Profile filter model.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Team.General.Filters.TeamFinancialProfileFilterModel">
+            <summary>
+            Team **financial profile filter** model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.Filters.TeamFinancialProfileFilterModel.FreePlay">
+            <summary>
+            Describe if team can **pay** for football matches and other stuff.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Team.General.Filters.TeamGeneralProfileFilterModel">
+            <summary>
+            Team **general profile filter** model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.Filters.TeamGeneralProfileFilterModel.Name">
+            <summary>
+            Name of team.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.Filters.TeamGeneralProfileFilterModel.City">
+            <summary>
+            **City** where team will play football.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.Filters.TeamGeneralProfileFilterModel.Tags">
+            <summary>
+            Team's **tags**.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.Filters.TeamGeneralProfileFilterModel.Availability">
+            <summary>
+            Team's **availability** model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.Filters.TeamGeneralProfileFilterModel.Location">
+            <summary>
+            **Location** where team mostly will play football.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.Filters.TeamGeneralProfileFilterModel.HasLogo">
+            <summary>
+            Describe if team must have uploaded logo.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Team.General.Filters.TeamInventaryProfileFilterModel">
+            <summary>
+            Team **inventary profile filter** model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.Filters.TeamInventaryProfileFilterModel.Shirts">
+            <summary>
+            Team's **shirts**.
+            </summary>
+        </member>
+        <member name="T:SFC.Request.Api.Infrastructure.Models.Team.General.Filters.TeamProfileFilterModel">
+            <summary>
+            Team **profile filter** model.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.Filters.TeamProfileFilterModel.General">
+            <summary>
+            General profile.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.Filters.TeamProfileFilterModel.Financial">
+            <summary>
+            Financial profile.
+            </summary>
+        </member>
+        <member name="P:SFC.Request.Api.Infrastructure.Models.Team.General.Filters.TeamProfileFilterModel.Inventary">
+            <summary>
+            Inventary profile.
             </summary>
         </member>
         <member name="T:SFC.Request.Api.Infrastructure.Models.Team.General.TeamAvailabilityModel">

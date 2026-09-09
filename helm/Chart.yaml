@@ -30,3 +30,6 @@ dependencies:
   - name: sfc-team
     version: 1.0.0
     repository: "file://../../sfc-team-service/helm"
+  - name: sfc-game
+    version: 1.0.0
+    repository: "file://../../sfc-game-service/helm"

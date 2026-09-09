@@ -50,6 +50,8 @@ public class DataInitializationHostedService(
 
         bus.Send(new SFC.Request.Messages.Commands.Team.Data.RequireData(), cancellationToken);
 
+        bus.Send(new SFC.Request.Messages.Commands.Game.Data.RequireData(), cancellationToken);
+
         return Task.CompletedTask;
     }
 }

@@ -1,4 +1,6 @@
 ﻿using SFC.Request.Domain.Entities.Request.Data;
+using SFC.Request.Domain.Entities.Request.Game.Player;
+using SFC.Request.Domain.Entities.Request.Game.Team;
 using SFC.Request.Domain.Entities.Request.Team.Player;
 
 namespace SFC.Request.Application.Interfaces.Persistence.Context;
@@ -11,6 +13,10 @@ public interface IRequestDbContext : IDbContext
     #region General
 
     IQueryable<TeamPlayerRequest> TeamPlayerRequests { get; }
+
+    IQueryable<GamePlayerRequest> GamePlayerRequests { get; }
+
+    IQueryable<GameTeamRequest> GameTeamRequests { get; }
 
     #endregion
 

@@ -77,6 +77,22 @@ public class Localization
                   GetValue(s_localizer?.GetString("InvalidDaysOfWeek"),
                       "Each value from '{PropertyName}' must be in Days of Week range.")!;
 
+    public static string TagsSizeInvalid =>
+                      GetValue(s_localizer?.GetString("TagsSizeInvalid"),
+                          "The length of '{0}' must be less or equal to {1}.")!;
+
+    public static string TagEmpty =>
+                      GetValue(s_localizer?.GetString("TagEmpty"),
+                          "Each value from '{PropertyName}' must not be empty.")!;
+
+    public static string TagMaxLength =>
+                      GetValue(s_localizer?.GetString("TagMaxLength"),
+                          "Each value from '{PropertyName}' must be {MaxLength} characters or fewer. You entered {TotalLength} characters.")!;
+
+    public static string AvailabilityDayInvalid =>
+                      GetValue(s_localizer?.GetString("AvailabilityDayInvalid"),
+                          "Each value from '{PropertyName}' must be in Days of Week range.")!;
+
     public static string TimeOutError =>
                     GetValue(s_localizer?.GetString("TimeOutError"),
                         "The timeout to complete the request has expired.")!;
@@ -108,6 +124,34 @@ public class Localization
     public static string RequestAlreadyFinalized =>
                        GetValue(s_localizer?.GetString("RequestAlreadyFinalized"),
                            "Request already finalized.")!;
+
+    public static string GameNotFound =>
+                       GetValue(s_localizer?.GetString("GameNotFound"),
+                           "Game not found.")!;
+
+    public static string GamePlayerNotFound =>
+                       GetValue(s_localizer?.GetString("GamePlayerNotFound"),
+                           "Game player not found.")!;
+
+    public static string PlayerAlreadyInGame =>
+                       GetValue(s_localizer?.GetString("PlayerAlreadyInGame"),
+                           "Player already in game.")!;
+
+    public static string GamePlayerRequestActiveAlreadyExist =>
+                       GetValue(s_localizer?.GetString("GamePlayerRequestActiveAlreadyExist"),
+                           "Active game player request already exist.")!;
+
+    public static string GameTeamNotFound =>
+                       GetValue(s_localizer?.GetString("GameTeamNotFound"),
+                           "Game team not found.")!;
+
+    public static string TeamAlreadyInGame =>
+                       GetValue(s_localizer?.GetString("TeamAlreadyInGame"),
+                           "Team already in game.")!;
+
+    public static string GameTeamRequestActiveAlreadyExist =>
+                       GetValue(s_localizer?.GetString("GameTeamRequestActiveAlreadyExist"),
+                           "Active game team request already exist.")!;
 
     public static string GetDataValue(string name)
     {

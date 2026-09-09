@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 
+using SFC.Request.Infrastructure.Authorization.OwnGame;
 using SFC.Request.Infrastructure.Authorization.OwnPlayer;
 using SFC.Request.Infrastructure.Authorization.OwnRequest;
 using SFC.Request.Infrastructure.Authorization.OwnTeam;
@@ -40,6 +41,14 @@ public static class AuthorizationPolicies
             .AddRequirements(new OwnTeamRequirement());
 
         return BuildPolicyModel(Policy.OwnTeam, builder);
+    }
+
+    public static PolicyModel OwnGame(IDictionary<string, IEnumerable<string>> claims)
+    {
+        AuthorizationPolicyBuilder builder = GetGeneralPolicyBuilder(claims)
+            .AddRequirements(new OwnGameRequirement());
+
+        return BuildPolicyModel(Policy.OwnGame, builder);
     }
 
     #endregion Public

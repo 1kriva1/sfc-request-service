@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageId>SFC.Request.Contracts</PackageId>
-    <Version>0.0.1</Version>
+    <Version>0.0.2</Version>
     <Authors>Andrii Kryvoruk</Authors>
     <Company>SFC</Company>
     <Product>SFC</Product>
@@ -19,6 +19,16 @@
     <None Remove="Headers\pagination_header.proto" />
     <None Remove="Messages\Request\Data\GetAll\get_all_request_data_request.proto" />
     <None Remove="Messages\Request\Data\GetAll\get_all_request_data_response.proto" />
+    <None Remove="Messages\Request\Game\Player\Find\Filters\get_game_player_requests_filter.proto" />
+    <None Remove="Messages\Request\Game\Player\Find\get_game_player_requests_request.proto" />
+    <None Remove="Messages\Request\Game\Player\Find\get_game_player_requests_response.proto" />
+    <None Remove="Messages\Request\Game\Player\Get\get_game_player_request_request.proto" />
+    <None Remove="Messages\Request\Game\Player\Get\get_game_player_request_response.proto" />
+    <None Remove="Messages\Request\Game\Team\Find\Filters\get_game_team_requests_filter.proto" />
+    <None Remove="Messages\Request\Game\Team\Find\get_game_team_requests_request.proto" />
+    <None Remove="Messages\Request\Game\Team\Find\get_game_team_requests_response.proto" />
+    <None Remove="Messages\Request\Game\Team\Get\get_game_team_request_request.proto" />
+    <None Remove="Messages\Request\Game\Team\Get\get_game_team_request_response.proto" />
     <None Remove="Messages\Request\Team\Player\Find\Filters\get_team_player_requests_filter.proto" />
     <None Remove="Messages\Request\Team\Player\Find\get_team_player_requests_request.proto" />
     <None Remove="Messages\Request\Team\Player\Find\get_team_player_requests_response.proto" />
@@ -28,7 +38,11 @@
     <None Remove="Models\Common\range_limit.proto" />
     <None Remove="Models\Common\sorting.proto" />
     <None Remove="Models\Request\Data\data_value.proto" />
+    <None Remove="Models\Request\Game\Player\game_player_request.proto" />
+    <None Remove="Models\Request\Game\Team\game_team_request.proto" />
     <None Remove="Models\Request\team_player_request.proto" />
+    <None Remove="Services\game_player_request_service.proto" />
+    <None Remove="Services\game_team_request_service.proto" />
     <None Remove="Services\request_data_service.proto" />
     <None Remove="Services\team_player_request_service.proto" />
   </ItemGroup>
@@ -48,6 +62,16 @@
     <Protobuf Include="Headers\pagination_header.proto" />
     <Protobuf Include="Messages\Request\Data\GetAll\get_all_request_data_request.proto" />
     <Protobuf Include="Messages\Request\Data\GetAll\get_all_request_data_response.proto" />
+    <Protobuf Include="Messages\Request\Game\Player\Find\Filters\get_game_player_requests_filter.proto" />
+    <Protobuf Include="Messages\Request\Game\Player\Find\get_game_player_requests_request.proto" />
+    <Protobuf Include="Messages\Request\Game\Player\Find\get_game_player_requests_response.proto" />
+    <Protobuf Include="Messages\Request\Game\Player\Get\get_game_player_request_request.proto" />
+    <Protobuf Include="Messages\Request\Game\Player\Get\get_game_player_request_response.proto" />
+    <Protobuf Include="Messages\Request\Game\Team\Find\Filters\get_game_team_requests_filter.proto" />
+    <Protobuf Include="Messages\Request\Game\Team\Find\get_game_team_requests_request.proto" />
+    <Protobuf Include="Messages\Request\Game\Team\Find\get_game_team_requests_response.proto" />
+    <Protobuf Include="Messages\Request\Game\Team\Get\get_game_team_request_request.proto" />
+    <Protobuf Include="Messages\Request\Game\Team\Get\get_game_team_request_response.proto" />
     <Protobuf Include="Messages\Request\Team\Player\Find\Filters\get_team_player_requests_filter.proto" />
     <Protobuf Include="Messages\Request\Team\Player\Find\get_team_player_requests_request.proto" />
     <Protobuf Include="Messages\Request\Team\Player\Find\get_team_player_requests_response.proto" />
@@ -57,7 +81,11 @@
     <Protobuf Include="Models\Common\range_limit.proto" />
     <Protobuf Include="Models\Common\sorting.proto" />
     <Protobuf Include="Models\Request\Data\data_value.proto" />
+    <Protobuf Include="Models\Request\Game\Player\game_player_request.proto" />
+    <Protobuf Include="Models\Request\Game\Team\game_team_request.proto" />
     <Protobuf Include="Models\Request\Team\Player\team_player_request.proto" />
+    <Protobuf Include="Services\game_player_request_service.proto" />
+    <Protobuf Include="Services\game_team_request_service.proto" />
     <Protobuf Include="Services\request_data_service.proto" />
     <Protobuf Include="Services\team_player_request_service.proto" />
   </ItemGroup>

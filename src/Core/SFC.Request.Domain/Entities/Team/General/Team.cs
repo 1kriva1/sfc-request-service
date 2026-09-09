@@ -1,5 +1,6 @@
 ﻿using SFC.Request.Domain.Common;
 using SFC.Request.Domain.Common.Interfaces;
+using SFC.Request.Domain.Entities.Request.Game.Team;
 using SFC.Request.Domain.Entities.Request.Team.Player;
 using SFC.Request.Domain.Entities.Team.Player;
 
@@ -25,4 +26,6 @@ public class Team : BaseAuditableReferenceEntity<long>, IUserEntity
     public ICollection<TeamPlayer> Players { get; } = [];
 
     public ICollection<TeamPlayerRequest> PlayerRequests { get; } = [];
+
+    public ICollection<GameTeamRequest> GameRequests { get; } = [];
 }

@@ -22,11 +22,40 @@ public enum RequestId
     CreateTeamPlayer,
     UpdateTeamPlayer,
     CreateTeamPlayers,
+    // game
+    ResetGameData,
+    CreateGame,
+    UpdateGame,
+    CreateGames,
+    // game player
+    CreateGamePlayer,
+    UpdateGamePlayer,
+    CreateGamePlayers,
+    // game team
+    CreateGameTeam,
+    UpdateGameTeam,
+    CreateGameTeams,
     // core
     GetAllRequestData,
     CreateTeamPlayerRequest,
     UpdateTeamPlayerRequest,
     GetTeamPlayerRequest,
     GetAllTeamPlayerRequests,
-    GetTeamPlayerRequests
+    GetTeamPlayerRequests,
+    // request game player
+    CreateGamePlayerRequest,
+    CreateGamePlayerRequests,
+    UpdateGamePlayerRequest,
+    ExistGamePlayerRequest,
+    GetGamePlayerRequest,
+    GetsGamePlayerRequest,
+    GetGamePlayerRequests,
+    // request game team
+    CreateGameTeamRequest,
+    CreateGameTeamRequests,
+    UpdateGameTeamRequest,
+    ExistGameTeamRequest,
+    GetGameTeamRequest,
+    GetsGameTeamRequest,
+    GetGameTeamRequests,
 }
