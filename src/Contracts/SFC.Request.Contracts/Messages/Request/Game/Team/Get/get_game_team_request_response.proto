@@ -1,0 +1,12 @@
+﻿syntax = "proto3";
+
+package sfc_request;
+
+import "Models/Request/Game/Team/game_team_request.proto";
+
+option csharp_namespace = "SFC.Request.Contracts.Messages.Request.Game.Team.Get";
+
+message GetGameTeamRequestResponse
+{
+    GameTeamRequest request = 1;
+}

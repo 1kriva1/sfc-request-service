@@ -6,6 +6,8 @@ using Microsoft.Extensions.Hosting;
 using SFC.Request.Application.Interfaces.Common;
 using SFC.Request.Application.Interfaces.Persistence.Context;
 using SFC.Request.Domain.Entities.Request.Data;
+using SFC.Request.Domain.Entities.Request.Game.Player;
+using SFC.Request.Domain.Entities.Request.Game.Team;
 using SFC.Request.Domain.Entities.Request.Team.Player;
 using SFC.Request.Infrastructure.Persistence.Constants;
 
@@ -34,6 +36,10 @@ public class RequestDbContext(
     #region General
 
     public IQueryable<TeamPlayerRequest> TeamPlayerRequests => Set<TeamPlayerRequest>();
+
+    public IQueryable<GamePlayerRequest> GamePlayerRequests => Set<GamePlayerRequest>();
+
+    public IQueryable<GameTeamRequest> GameTeamRequests => Set<GameTeamRequest>();
 
     #endregion General
 

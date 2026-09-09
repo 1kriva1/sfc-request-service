@@ -59,4 +59,10 @@ public static class EntityEntryExtensions
         entry.Entity.Team = team;
         context.Entry<TeamEntity>(entry.Entity.Team).State = EntityState.Unchanged;
     }
+
+    public static void SetReference(this EntityEntry<IGameEntity> entry, DbContext context, GameEntity game)
+    {
+        entry.Entity.Game = game;
+        context.Entry<GameEntity>(entry.Entity.Game).State = EntityState.Unchanged;
+    }
 }

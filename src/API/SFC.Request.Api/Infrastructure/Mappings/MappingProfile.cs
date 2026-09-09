@@ -10,6 +10,14 @@ using SFC.Request.Application.Features.Common.Dto.Common;
 using SFC.Request.Application.Features.Common.Dto.Pagination;
 using SFC.Request.Application.Features.Request.Data.Queries.Common.Dto;
 using SFC.Request.Application.Features.Request.Data.Queries.GetAll;
+using SFC.Request.Application.Features.Request.Game.Player.Common.Dto;
+using SFC.Request.Application.Features.Request.Game.Player.Queries.Find;
+using SFC.Request.Application.Features.Request.Game.Player.Queries.Find.Dto.Filters;
+using SFC.Request.Application.Features.Request.Game.Player.Queries.Get;
+using SFC.Request.Application.Features.Request.Game.Team.Common.Dto;
+using SFC.Request.Application.Features.Request.Game.Team.Queries.Find;
+using SFC.Request.Application.Features.Request.Game.Team.Queries.Find.Dto.Filters;
+using SFC.Request.Application.Features.Request.Game.Team.Queries.Get;
 using SFC.Request.Application.Features.Request.Team.Player.Common.Dto;
 using SFC.Request.Application.Features.Request.Team.Player.Queries.Find;
 using SFC.Request.Application.Features.Request.Team.Player.Queries.Find.Dto.Filters;
@@ -66,6 +74,7 @@ public class MappingProfile : BaseMappingProfile
 
     private void CreateMapRequestContracts()
     {
+        // team player request
         // get request
         CreateMap<TeamPlayerRequestDto, SFC.Request.Contracts.Models.Request.TeamPlayerRequest>();
         CreateMap<GetTeamPlayerRequestViewModel, SFC.Request.Contracts.Messages.Request.Team.Player.Get.GetTeamPlayerRequestResponse>();
@@ -86,5 +95,37 @@ public class MappingProfile : BaseMappingProfile
         // (headers)
         CreateMap<PageMetadataDto, SFC.Request.Contracts.Headers.PaginationHeader>()
             .IgnoreAllNonExisting();
+
+        // game player request
+        // get Request
+        CreateMap<GamePlayerRequestDto, SFC.Request.Contracts.Models.Request.Game.Player.GamePlayerRequest>();
+        CreateMap<GetGamePlayerRequestViewModel, SFC.Request.Contracts.Messages.Request.Game.Player.Get.GetGamePlayerRequestResponse>();
+        CreateMap<SFC.Request.Contracts.Messages.Request.Game.Player.Get.GetGamePlayerRequestRequest, GetGamePlayerRequestQuery>();
+        CreateMap<GamePlayerRequestDto, SFC.Request.Contracts.Headers.AuditableHeader>()
+            .IgnoreAllNonExisting();
+
+        //  game player requests
+        // (filters)
+        CreateMap<SFC.Request.Contracts.Messages.Request.Game.Player.Find.GetGamePlayerRequestsRequest, GetGamePlayerRequestsQuery>();
+        CreateMap<SFC.Request.Contracts.Messages.Request.Game.Player.Find.Filters.GetGamePlayerRequestsFilter, GetGamePlayerRequestsFilterDto>();
+        // (result)
+        CreateMap<GetGamePlayerRequestsViewModel, SFC.Request.Contracts.Messages.Request.Game.Player.Find.GetGamePlayerRequestsResponse>();
+        CreateMap<GamePlayerRequestDto, SFC.Request.Contracts.Models.Request.Game.Player.GamePlayerRequest>();
+
+        // game team request
+        // get Request
+        CreateMap<GameTeamRequestDto, SFC.Request.Contracts.Models.Request.Game.Team.GameTeamRequest>();
+        CreateMap<GetGameTeamRequestViewModel, SFC.Request.Contracts.Messages.Request.Game.Team.Get.GetGameTeamRequestResponse>();
+        CreateMap<SFC.Request.Contracts.Messages.Request.Game.Team.Get.GetGameTeamRequestRequest, GetGameTeamRequestQuery>();
+        CreateMap<GameTeamRequestDto, SFC.Request.Contracts.Headers.AuditableHeader>()
+            .IgnoreAllNonExisting();
+
+        //  game team requests
+        // (filters)
+        CreateMap<SFC.Request.Contracts.Messages.Request.Game.Team.Find.GetGameTeamRequestsRequest, GetGameTeamRequestsQuery>();
+        CreateMap<SFC.Request.Contracts.Messages.Request.Game.Team.Find.Filters.GetGameTeamRequestsFilter, GetGameTeamRequestsFilterDto>();
+        // (result)
+        CreateMap<GetGameTeamRequestsViewModel, SFC.Request.Contracts.Messages.Request.Game.Team.Find.GetGameTeamRequestsResponse>();
+        CreateMap<GameTeamRequestDto, SFC.Request.Contracts.Models.Request.Game.Team.GameTeamRequest>();
     }
 }

@@ -16,6 +16,7 @@
         "Endpoints__Identity__Uri": "https://localhost:7266",
         "Endpoints__Player__Uri": "https://localhost:7366",
         "Endpoints__Team__Uri": "https://localhost:7566",
+        "Endpoints__Game__Uri": "https://localhost:7966",
         "Kestrel__Certificates__Default__Path": "C:/SFC/Configurations/certificates/sfc-request/sfc-request.pfx",
         "Kestrel__Certificates__Default__Password": "Test1234!"
       },

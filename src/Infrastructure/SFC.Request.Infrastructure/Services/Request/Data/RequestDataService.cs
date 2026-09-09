@@ -34,6 +34,14 @@ public class RequestDataService(
         };
     }
 
+    public async Task<GetGameDataModel> GetGameDataAsync()
+    {
+        return new()
+        {
+            RequestStatuses = await _requestStatusesRepository.ListAllAsync().ConfigureAwait(false)
+        };
+    }
+
     public async Task PublishDataInitializedEventAsync(CancellationToken cancellationToken)
     {
         GetAllRequestDataModel model = await GetAllRequestDataAsync().ConfigureAwait(true);

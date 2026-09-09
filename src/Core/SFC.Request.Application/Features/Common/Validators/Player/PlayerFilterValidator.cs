@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 
 using SFC.Request.Application.Common.Constants;
-using SFC.Request.Application.Common.Dto.Player.Filters;
+using SFC.Request.Application.Common.Dto.Player.General.Filters;
 using SFC.Request.Application.Common.Extensions;
 using SFC.Request.Application.Features.Common.Dto.Common;
 

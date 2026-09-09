@@ -36,6 +36,8 @@ public class RabbitMqExchangesSettings
     public ExchangeSetting<PlayerExchangeValue> Player { get; set; } = default!;
 
     public ExchangeSetting<TeamExchangeValue> Team { get; set; } = default!;
+
+    public ExchangeSetting<GameExchangeValue> Game { get; set; } = default!;
 }
 
 public class ExchangeSetting<T>

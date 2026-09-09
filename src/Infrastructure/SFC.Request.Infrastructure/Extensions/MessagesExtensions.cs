@@ -4,6 +4,8 @@ using SFC.Request.Application.Interfaces.Request.Data.Models;
 using SFC.Request.Messages.Commands.Common;
 using SFC.Request.Messages.Events.Request.Data;
 
+using GameDataValue = SFC.Game.Messages.Models.Data.DataValue;
+using GameInitializeData = SFC.Game.Messages.Commands.Request.Data.InitializeData;
 using RequestDataValue = SFC.Request.Messages.Models.Data.DataValue;
 using TeamDataValue = SFC.Team.Messages.Models.Data.DataValue;
 using TeamInitializeData = SFC.Team.Messages.Commands.Request.Data.InitializeData;
@@ -30,6 +32,17 @@ public static class MessagesExtensions
 
         return message;
     }
+
+    public static GameInitializeData BuildInitializeDataCommand(this IMapper mapper, GetGameDataModel model)
+    {
+        GameInitializeData message = new()
+        {
+            RequestStatuses = mapper.Map<IEnumerable<GameDataValue>>(model.RequestStatuses)
+        };
+
+        return message;
+    }
+
     public static T SetCommandInitiator<T>(this T command, string initiator) where T : InitiatorCommand
     {
         command.Initiator = initiator;

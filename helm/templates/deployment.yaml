@@ -73,6 +73,7 @@ spec:
               wait_on sfc-identity.sfc.svc.cluster.local 7266 "Identity"
               wait_on sfc-player.sfc.svc.cluster.local 7366 "Player"
               wait_on sfc-team.sfc.svc.cluster.local 7566 "Team"
+              wait_on sfc-game.sfc.svc.cluster.local 7966 "Game"
               echo "All dependencies are reachable!"
           resources:
             requests:

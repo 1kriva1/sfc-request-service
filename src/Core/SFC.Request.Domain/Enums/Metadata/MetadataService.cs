@@ -5,5 +5,6 @@ public enum MetadataService
     Identity,
     Player,
     Team,
+    Game,
     Request
 }

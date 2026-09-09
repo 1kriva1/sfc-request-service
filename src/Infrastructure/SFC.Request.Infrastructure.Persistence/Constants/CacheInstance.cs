@@ -4,5 +4,6 @@ public static class CacheInstance
 {
     public const string Data = "SFC.Data";
     public const string Team = "SFC.Team";
+    public const string Game = "SFC.Game";
     public const string Request = "SFC.Request";
 }

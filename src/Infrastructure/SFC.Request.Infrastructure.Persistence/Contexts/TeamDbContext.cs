@@ -64,6 +64,9 @@ public class TeamDbContext(
         // player
         PlayerDbContext.ApplyPlayerConfigurations(modelBuilder);
 
+        // game
+        GameDbContext.ApplyGameConfigurations(modelBuilder);
+
         // team
         ApplyTeamConfigurations(modelBuilder);
 

@@ -3,8 +3,13 @@ public enum MetadataDomain
 {
     Data,
     User,
-    TeamPlayerRequest,
     Player,
     Team,
-    TeamPlayer
+    TeamPlayer,
+    Game,
+    GamePlayer,
+    GameTeam,
+    TeamPlayerRequest,
+    GamePlayerRequest,
+    GameTeamRequest
 }
