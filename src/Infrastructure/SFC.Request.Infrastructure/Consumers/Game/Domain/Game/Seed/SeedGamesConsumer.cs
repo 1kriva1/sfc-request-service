@@ -11,33 +11,40 @@ using Microsoft.Extensions.Logging;
 
 using SFC.Game.Messages.Commands.Game.General;
 using SFC.Request.Application.Features.Game.General.Commands.Creates;
+using SFC.Request.Application.Interfaces.Metadata;
 using SFC.Request.Infrastructure.Extensions;
 using SFC.Request.Infrastructure.Settings.RabbitMq;
 
 namespace SFC.Request.Infrastructure.Consumers.Game.Domain.Game.Seed;
+
 public class SeedGamesConsumer(
     IMapper mapper,
     IWebHostEnvironment environment,
     ILogger<SeedGamesConsumer> logger,
-    ISender mediator) : IConsumer<SeedGames>
+    ISender mediator,
+    IMetadataService metadataService) : IConsumer<SeedGames>
 {
 #pragma warning disable CA1823 // Avoid unused private fields
     private readonly IMapper _mapper = mapper;
     private readonly IWebHostEnvironment _environment = environment;
     private readonly ILogger<SeedGamesConsumer> _logger = logger;
     private readonly ISender _mediator = mediator;
+    private readonly IMetadataService _metadataService = metadataService;
 #pragma warning restore CA1823 // Avoid unused private fields
 
     public async Task Consume(ConsumeContext<SeedGames> context)
     {
         if (_environment.IsDevelopment())
         {
-            SeedGames message = context.Message;
+            if (!await _metadataService.IsCompletedAsync(MetadataServiceEnum.Game, MetadataDomainEnum.Game, MetadataTypeEnum.Seed).ConfigureAwait(true))
+            {
+                SeedGames message = context.Message;
 
-            CreatesGameCommand command = _mapper.Map<CreatesGameCommand>(message.Games);
+                CreatesGameCommand command = _mapper.Map<CreatesGameCommand>(message.Games);
 
-            await _mediator.Send(command)
-                           .ConfigureAwait(false);
+                await _mediator.Send(command)
+                               .ConfigureAwait(false);
+            }
         }
     }
 }

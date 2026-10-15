@@ -174,7 +174,7 @@ public class GameTeamRequestController : ApiControllerBase
     /// <response code="404">Returns when Request **not found**.</response>
     /// <response code="409">Returns when **flow validation** errors.</response>
     [HttpPut("{requestId}/Games/{gameId}/Teams/{teamId}/Cancel")]
-    [Authorize(Policy.OwnGame)]
+    [Authorize(Policy.OwnTeam)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
@@ -207,7 +207,7 @@ public class GameTeamRequestController : ApiControllerBase
     /// <response code="404">Returns when Request **not found**.</response>
     /// <response code="409">Returns when **flow validation** errors.</response>
     [HttpPut("{requestId}/Games/{gameId}/Teams/{teamId}/Decline")]
-    [Authorize(Policy.OwnTeam)]
+    [Authorize(Policy.OwnGame)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(BaseErrorResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -242,7 +242,7 @@ public class GameTeamRequestController : ApiControllerBase
     /// <response code="404">Returns when Request **not found**.</response>
     /// <response code="409">Returns when **flow validation** errors.</response>
     [HttpPut("{requestId}/Games/{gameId}/Teams/{teamId}/Accept")]
-    [Authorize(Policy.OwnTeam)]
+    [Authorize(Policy.OwnGame)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
