@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using System.Threading;
+
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -7,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using SFC.Request.Infrastructure.Persistence.Extensions;
 
 namespace SFC.Request.Infrastructure.Persistence.Extensions;
+
 public static class ContextExtensions
 {
     public static void AddDbContext<T>(this IServiceCollection services,
@@ -25,15 +29,18 @@ public static class ContextExtensions
         );
     }
 
-    public static void Clear<T>(this DbContext context) where T : class
+    public static async Task ClearAsync<T>(this DbContext context, CancellationToken cancellationToken = default)
+    where T : class
     {
         ArgumentNullException.ThrowIfNull(context);
 
-        DbSet<T> dbSet = context.Set<T>();
+        // DELETE is executed immediately, before any later inserts
+        await context.Set<T>().ExecuteDeleteAsync(cancellationToken).ConfigureAwait(false);
 
-        if (dbSet.Any())
+        // Detach stale tracked instances of this type only
+        foreach (EntityEntry<T> entry in context.ChangeTracker.Entries<T>().ToList())
         {
-            dbSet.RemoveRange(dbSet.ToList());
+            entry.State = EntityState.Detached;
         }
     }
 }

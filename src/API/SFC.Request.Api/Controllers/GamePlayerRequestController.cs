@@ -161,7 +161,7 @@ public class GamePlayerRequestController : ApiControllerBase
     /// <response code="404">Returns when Request **not found**.</response>
     /// <response code="409">Returns when **flow validation** errors.</response>
     [HttpPut("{requestId}/Games/{gameId}/Players/{playerId}/Cancel")]
-    [Authorize(Policy.OwnGame)]
+    [Authorize(Policy.OwnPlayer)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
@@ -194,7 +194,7 @@ public class GamePlayerRequestController : ApiControllerBase
     /// <response code="404">Returns when Request **not found**.</response>
     /// <response code="409">Returns when **flow validation** errors.</response>
     [HttpPut("{requestId}/Games/{gameId}/Players/{playerId}/Decline")]
-    [Authorize(Policy.OwnPlayer)]
+    [Authorize(Policy.OwnGame)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(BaseErrorResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -229,7 +229,7 @@ public class GamePlayerRequestController : ApiControllerBase
     /// <response code="404">Returns when Request **not found**.</response>
     /// <response code="409">Returns when **flow validation** errors.</response>
     [HttpPut("{requestId}/Games/{gameId}/Players/{playerId}/Accept")]
-    [Authorize(Policy.OwnPlayer)]
+    [Authorize(Policy.OwnGame)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]

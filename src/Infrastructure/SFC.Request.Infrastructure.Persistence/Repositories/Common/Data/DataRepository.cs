@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 using SFC.Request.Application.Interfaces.Persistence.Context;
 using SFC.Request.Application.Interfaces.Persistence.Repository.Common.Data;
 using SFC.Request.Domain.Common;
-using SFC.Request.Infrastructure.Persistence.Extensions;
 
 namespace SFC.Request.Infrastructure.Persistence.Repositories.Common.Data;
 public class DataRepository<TEntity, TContext, TEnum>(TContext context)
@@ -19,8 +19,43 @@ public class DataRepository<TEntity, TContext, TEnum>(TContext context)
 
     public Task<TEntity[]> ResetAsync(IEnumerable<TEntity> entities)
     {
-        Context.Clear<TEntity>();
+        TEntity[] items = [.. entities];
 
-        return AddRangeAsync(entities.ToArray());
+        IExecutionStrategy strategy = Context.Database.CreateExecutionStrategy();
+
+        return strategy.ExecuteAsync(async () =>
+        {
+            IDbContextTransaction transaction = await Context.Database
+                .BeginTransactionAsync()
+                .ConfigureAwait(false);
+
+            await using (transaction.ConfigureAwait(false))
+            {
+                DbSet<TEntity> set = Context.Set<TEntity>();
+                Dictionary<TEnum, TEntity> existing = await set.ToDictionaryAsync(e => e.Id).ConfigureAwait(false);
+
+                HashSet<TEnum> incomingIds = [.. items.Select(i => i.Id)];
+
+                // Remove rows that no longer exist in the new data
+                set.RemoveRange(existing.Where(e => !incomingIds.Contains(e.Key)).Select(e => e.Value));
+
+                foreach (TEntity item in items)
+                {
+                    if (existing.TryGetValue(item.Id, out TEntity? current))
+                    {
+                        Context.Entry(current).CurrentValues.SetValues(item); // update
+                    }
+                    else
+                    {
+                        await set.AddAsync(item).ConfigureAwait(false); // insert
+                    }
+                }
+
+                await Context.SaveChangesAsync().ConfigureAwait(false);
+                await transaction.CommitAsync().ConfigureAwait(false);
+
+                return items;
+            }
+        });
     }
 }
