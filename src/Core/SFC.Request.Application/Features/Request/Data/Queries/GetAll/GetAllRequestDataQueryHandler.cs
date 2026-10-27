@@ -21,7 +21,7 @@ public class GetAllRequestDataQueryHandler(IMapper mapper, IRequestDataService r
 
         return new GetAllRequestDataViewModel
         {
-            RequestStatuses = _mapper.Map<IEnumerable<DataValueDto>>(model.RequestStatuses.Localize())
+            RequestStatuses = _mapper.Map<IEnumerable<DataValueDto>>(model.RequestStatuses).Localize()
         };
     }
 }
